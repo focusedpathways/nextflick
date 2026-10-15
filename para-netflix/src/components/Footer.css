@@ -1,0 +1,69 @@
+/* Footer strip: lines up with the Featured Films strip (same side margin). */
+.site-footer {
+  position: relative;
+  z-index: 1;
+  padding: 0 var(--strip-margin) 3rem;
+  background: var(--bg);
+  color: var(--text-muted);
+}
+
+/* Closing prompt. Exactly --section-gap (150px) between the bottom of the posters and
+   this block (16px of it is the row's own bottom padding), and --section-gap again
+   between this block and the "Questions?" line. The block is centered, its text is
+   left-aligned with the email field's left edge. */
+.footer-cta {
+  width: min(760px, 100%);
+  margin: calc(var(--section-gap) - 16px) auto var(--section-gap);
+  text-align: left;
+}
+
+.footer-cta p {
+  margin: 0 0 1.1rem;
+  font-size: 1.05rem;
+  color: var(--text);
+}
+
+.footer-questions {
+  margin: 0 0 2.2rem;
+  font-size: 1.05rem;
+}
+
+.footer-questions a,
+.footer-links a {
+  color: var(--text-muted);
+  text-decoration: underline;
+}
+
+.footer-questions a:hover,
+.footer-links a:hover {
+  color: var(--text);
+}
+
+.footer-links {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0 2rem;
+}
+
+.footer-links ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.footer-links li {
+  margin-bottom: 0.95rem;
+  font-size: 0.95rem;
+}
+
+.footer-links a:focus-visible,
+.footer-questions a:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 2px;
+}
+
+.footer-legal {
+  margin: 2.5rem 0 0;
+  font-size: 0.8rem;
+  color: rgba(159, 176, 195, 0.65);
+}

@@ -1,0 +1,47 @@
+/* Global tokens and reset. Brand: NextFlick (dark, cool, brushed metal). */
+:root {
+  --bg: #05070c;
+  --surface: rgba(8, 12, 20, 0.72);
+  --text: #eef3f9;
+  --text-muted: #9fb0c3;
+  --border: rgba(170, 200, 230, 0.18);
+  --accent: #7cc4ff; /* ice blue: focus rings, glow */
+  --metal: linear-gradient(135deg, #f2f6fb 0%, #9fb1c4 38%, #e3ebf4 55%, #6d8296 100%);
+  --metal-text: linear-gradient(180deg, #ffffff 25%, #e4ebf3 100%);
+  --cta: #e50914; /* Netflix red: the only warm color, reserved for CTAs */
+  --cta-hover: #f6121d;
+  --on-cta: #000;
+  --on-accent: #05070c;
+  --error: #ff8a93;
+  --section-gap: 150px;   /* gap: posters -> closing email prompt -> footer links */
+  --strip-margin: clamp(1.5rem, 6vw, 8rem);   /* side margin shared by the Featured Films strip and the footer */
+
+  --font: 'Helvetica Neue', Helvetica, Arial, system-ui, sans-serif;
+  --radius: 6px;
+  --gutter: 3rem; /* page side margin: logo (left) and Sign In (right) share it */
+
+  font-family: var(--font);
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+a {
+  color: inherit;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+}
+
+button,
+input {
+  font: inherit;
+}

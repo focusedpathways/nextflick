@@ -1,0 +1,17 @@
+/* The logo is a single svg (see Logo.jsx). Size it by width; the height follows. */
+.logo {
+  display: block;
+  width: 8.7rem;        /* 139px at 16px, the same footprint as before */
+  height: auto;
+  overflow: visible;
+  color: var(--text);
+}
+
+.logo-text {
+  font-family: 'Michroma', 'Eurostile', 'Microgramma', 'Arial Black', system-ui, sans-serif;
+  font-size: 12.3px;
+  font-weight: 700;
+  fill: currentColor;
+  stroke: currentColor;
+  stroke-width: 0.35px;   /* a little heavier, like the reference lettering */
+}

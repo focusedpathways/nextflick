@@ -1,0 +1,116 @@
+.landing {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Top nav bar: full width, dark gradient + soft blur so the logo and Sign In
+   stay readable over any frame of the video. */
+.landing-header {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 10;
+  background: linear-gradient(to bottom, rgba(5, 7, 12, 0.92), rgba(5, 7, 12, 0.6) 65%, transparent);
+}
+
+.landing-header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  backdrop-filter: blur(8px);
+  mask-image: linear-gradient(to bottom, #000 55%, transparent);
+}
+
+.landing-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem var(--gutter) 1.6rem;
+}
+
+.landing-header a {
+  text-decoration: none;
+}
+
+/* Sign In: red text only, no fill */
+.nav-account {
+  color: var(--cta);
+  font-weight: 700;
+  font-size: 1.15rem;
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.85), 0 0 2px rgba(0, 0, 0, 0.9);
+  text-decoration: none;
+  padding: 0.5rem 0;
+  border-bottom: 2px solid transparent;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.nav-account:hover {
+  color: var(--cta-hover);
+  border-bottom-color: currentColor;
+}
+
+.landing-main {
+  flex: 1;
+  min-height: 100vh;
+  min-height: 100svh;   /* the visible height, even with browser toolbars */
+  display: grid;
+  place-items: center;
+  /* the nav bar is about 80px tall; padding the top by that centers the callout in the
+     visible area below it (junior's choice), not in the whole window */
+  padding: 5rem var(--gutter) 0;
+}
+
+/* Callout: no box. Text floats over the video; a soft shadow keeps it readable and a
+   very faint feathered darkening (no edge) sits behind it. Sizes are 1.33x the
+   earlier 480px version. */
+.cta-card {
+  position: relative;
+  isolation: isolate;
+  width: min(640px, 100%);
+  text-align: left;   /* headline and sub-line start at the email field's left edge */
+}
+
+.cta-card::before {
+  content: '';
+  position: absolute;
+  inset: -4rem -7rem;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, rgba(5, 7, 12, 0.5), rgba(5, 7, 12, 0) 68%);
+}
+
+.cta-card h1 {
+  margin: 0 0 0.93rem;
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  text-wrap: balance;
+  background: var(--metal-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 2px 14px rgba(0, 0, 0, 0.85));
+}
+
+.cta-card p {
+  margin: 0 0 3.45rem;
+  color: var(--text);
+  font-size: 1.27rem;
+  text-shadow: 0 1px 14px rgba(0, 0, 0, 0.9), 0 0 2px rgba(0, 0, 0, 0.8);
+}
+
+.nav-account:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 2px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}

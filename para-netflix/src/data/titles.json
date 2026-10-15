@@ -1,0 +1,92 @@
+[
+  {
+    "id": "angel-and-the-badman",
+    "title": "Angel and the Badman",
+    "genre": "Western / Drama",
+    "year": 2026,
+    "rating": "PG-13",
+    "image": "/posters/angel-and-the-badman.jpg",
+    "imdb": "https://www.imdb.com/title/tt39850240/"
+  },
+  {
+    "id": "the-king-of-kings",
+    "title": "The King of Kings",
+    "genre": "Animation / Faith",
+    "year": 2025,
+    "rating": "PG",
+    "image": "/posters/the-king-of-kings.jpg",
+    "imdb": "https://www.imdb.com/title/tt7967302/"
+  },
+  {
+    "id": "david",
+    "title": "David",
+    "genre": "Animation / Faith",
+    "year": 2025,
+    "rating": "PG",
+    "image": "/posters/david.jpg",
+    "imdb": "https://www.imdb.com/title/tt15678738/"
+  },
+  {
+    "id": "the-wild-robot",
+    "title": "The Wild Robot",
+    "genre": "Animation / Family",
+    "year": 2024,
+    "rating": "PG",
+    "image": "/posters/the-wild-robot.jpg",
+    "imdb": "https://www.imdb.com/title/tt29623480/"
+  },
+  {
+    "id": "paddington-in-peru",
+    "title": "Paddington in Peru",
+    "genre": "Family / Comedy",
+    "year": 2024,
+    "rating": "PG",
+    "image": "/posters/paddington-in-peru.jpg",
+    "imdb": "https://www.imdb.com/title/tt5822536/"
+  },
+  {
+    "id": "i-can-only-imagine",
+    "title": "I Can Only Imagine",
+    "genre": "Drama / Music",
+    "year": 2018,
+    "rating": "PG",
+    "image": "/posters/i-can-only-imagine.jpg",
+    "imdb": "https://www.imdb.com/title/tt6450186/"
+  },
+  {
+    "id": "the-prince-of-egypt",
+    "title": "The Prince of Egypt",
+    "genre": "Animation / Epic",
+    "year": 1998,
+    "rating": "PG",
+    "image": "/posters/the-prince-of-egypt.jpg",
+    "imdb": "https://www.imdb.com/title/tt0120794/"
+  },
+  {
+    "id": "war-room",
+    "title": "War Room",
+    "genre": "Drama / Faith",
+    "year": 2015,
+    "rating": "PG",
+    "image": "/posters/war-room.jpg",
+    "imdb": "https://www.imdb.com/title/tt3832914/"
+  },
+  {
+    "id": "soul-surfer",
+    "title": "Soul Surfer",
+    "genre": "Sport / Drama",
+    "year": 2011,
+    "rating": "PG",
+    "image": "/posters/soul-surfer.jpg",
+    "imdb": "https://www.imdb.com/title/tt1596346/"
+  },
+  {
+    "id": "chariots-of-fire",
+    "title": "Chariots of Fire",
+    "genre": "Sport / Drama",
+    "year": 1981,
+    "rating": "PG",
+    "image": "/posters/chariots-of-fire.jpg",
+    "imdb": "https://www.imdb.com/title/tt0082158/"
+  }
+]

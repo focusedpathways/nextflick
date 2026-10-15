@@ -1,0 +1,47 @@
+.bg-video {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  z-index: -1;
+  background-color: var(--bg);
+  /* gradient sits under the poster so a missing image still looks intentional */
+  background-image: radial-gradient(ellipse at 50% 30%, #12202f, var(--bg) 70%);
+  background-size: cover;
+  background-position: center;
+}
+
+/* Fills the viewport edge to edge (cover), plus a slow push-in and drift so the
+   scene keeps moving even when the footage itself is calm. */
+.bg-video-media {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  min-width: 100vw;
+  min-height: 100vh;
+  object-fit: cover;
+  transform-origin: 40% 45%;
+  animation: bg-drift 24s ease-in-out infinite alternate;
+}
+
+@keyframes bg-drift {
+  from {
+    transform: scale(1.04) translate3d(0, 0, 0);
+  }
+  to {
+    transform: scale(1.12) translate3d(-1.5%, 1%, 0);
+  }
+}
+
+.bg-video-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to bottom, rgba(5, 7, 12, 0.5), rgba(5, 7, 12, 0.12) 45%, rgba(5, 7, 12, 0.6));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bg-video-media {
+    display: none;
+  }
+}

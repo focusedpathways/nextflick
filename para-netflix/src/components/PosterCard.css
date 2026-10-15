@@ -1,0 +1,128 @@
+/* Poster: everything is CSS and scales from one number, --w (the card width; 236px if
+   the parent does not set it). Inside, sizes are in em so type, spacing and corners
+   shrink and grow together with the card. Aspect ratio 236:330 like the reference. */
+.poster {
+  position: relative;
+  width: var(--w, 236px);
+  height: calc(var(--w, 236px) * 1.398);
+  font-size: calc(var(--w, 236px) * 0.0678);   /* 16px when the card is 236px wide */
+  margin: 0;
+  overflow: hidden;
+  border-radius: 0.375em;
+  background:
+    radial-gradient(120% 80% at 78% 8%, color-mix(in srgb, var(--c3) 55%, transparent), transparent 60%),
+    linear-gradient(165deg, var(--c1), var(--c2));
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.55);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.poster:hover {
+  transform: translateY(-0.4em) scale(1.03);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.7);
+}
+
+/* A real poster image fills the card; the drawn artwork is not used */
+.poster--image {
+  background: #11141b;
+}
+
+.poster--image::before,
+.poster--image::after {
+  display: none;
+}
+
+.poster--image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Artwork layer, one per shape */
+.poster::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+
+.poster--sun::before {
+  background: radial-gradient(circle at 60% 60%, var(--c3) 0 15%, transparent 15.5%),
+    radial-gradient(circle at 60% 60%, color-mix(in srgb, var(--c3) 35%, transparent) 0 31%, transparent 32%);
+  opacity: 0.85;
+}
+
+.poster--stripes::before {
+  background: repeating-linear-gradient(
+    115deg,
+    transparent 0 14px,
+    color-mix(in srgb, var(--c3) 35%, transparent) 14px 17px
+  );
+  mask-image: linear-gradient(to bottom, transparent 20%, #000 70%);
+}
+
+.poster--grid::before {
+  background:
+    linear-gradient(color-mix(in srgb, var(--c3) 30%, transparent) 1px, transparent 1px) 0 0 / 28px 28px,
+    linear-gradient(90deg, color-mix(in srgb, var(--c3) 30%, transparent) 1px, transparent 1px) 0 0 / 28px 28px;
+  mask-image: radial-gradient(circle at 60% 62%, #000, transparent 70%);
+}
+
+.poster--diagonal::before {
+  background: linear-gradient(
+    118deg,
+    transparent 46%,
+    color-mix(in srgb, var(--c3) 85%, transparent) 46% 54%,
+    transparent 54% 62%,
+    color-mix(in srgb, var(--c3) 40%, transparent) 62% 66%,
+    transparent 66%
+  );
+}
+
+/* Top shade so the title always reads; the bottom-left stays clear for the rank number */
+.poster::after {
+  content: '';
+  position: absolute;
+  inset: 0 0 45%;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.75), transparent);
+}
+
+.poster-genre {
+  position: absolute;
+  top: 0.85em;
+  left: 0.9em;
+  z-index: 1;
+  font-size: 0.65em;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.poster-caption {
+  position: absolute;
+  inset: 2.2em 0.9em auto;
+  z-index: 1;
+  text-align: left;
+}
+
+.poster-title {
+  font-family: Impact, 'Haettenschweiler', 'Arial Narrow Bold', 'Helvetica Neue', sans-serif;
+  display: block;
+  font-size: 1.75em;
+  line-height: 0.98;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  text-wrap: balance;
+  color: #fff;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+}
+
+.poster-year {
+  position: absolute;
+  right: 0.9em;
+  bottom: 0.9em;
+  z-index: 1;
+  font-size: 0.7em;
+  letter-spacing: 0.14em;
+  color: rgba(255, 255, 255, 0.65);
+}
