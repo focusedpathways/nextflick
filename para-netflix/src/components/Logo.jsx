@@ -31,9 +31,12 @@ const REEL_PATH = [
   circle(R, R, 1.1),                     // hub
 ].join(' ')
 
-export default function Logo() {
+// tone="silver" (default): the metallic look used on the dark Landing page.
+// tone="red": solid Netflix red for reel, bar and wordmark (light pages like Signup).
+export default function Logo({ tone = 'silver' }) {
+  const fill = tone === 'red' ? '#e50914' : 'url(#logo-metal)'
   return (
-    <svg className="logo" viewBox={`0 0 ${W} ${H}`} role="img" aria-label="NextFlick">
+    <svg className={`logo logo--${tone}`} viewBox={`0 0 ${W} ${H}`} role="img" aria-label="NextFlick">
       <defs>
         {/* userSpaceOnUse: one gradient across the whole lockup, shared by reel and bar */}
         <linearGradient id="logo-metal" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2={W} y2={H}>
@@ -44,8 +47,8 @@ export default function Logo() {
         </linearGradient>
       </defs>
 
-      <path d={REEL_PATH} fill="url(#logo-metal)" fillRule="evenodd" />
-      <rect x={R} y={BAR_TOP} width={W - R} height={H - BAR_TOP} fill="url(#logo-metal)" />
+      <path d={REEL_PATH} fill={fill} fillRule="evenodd" />
+      <rect x={R} y={BAR_TOP} width={W - R} height={H - BAR_TOP} fill={fill} />
 
       <text
         className="logo-text"

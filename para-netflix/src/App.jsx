@@ -1,5 +1,7 @@
 import { Routes, Route, Link } from 'react-router-dom'
 import Landing from './pages/Landing.jsx'
+import Signup from './pages/Signup.jsx'
+import PaymentPlaceholder from './pages/PaymentPlaceholder.jsx'
 
 // Temporary stand-in until each page is built (one page at a time).
 function ComingSoon({ name }) {
@@ -15,7 +17,8 @@ export default function App() {
   return (
     <Routes>
       <Route path="/" element={<Landing />} />
-      <Route path="/signup" element={<ComingSoon name="Sign up" />} />
+      <Route path="/signup" element={<Signup />} />
+      <Route path="/signup/payment" element={<PaymentPlaceholder />} />
       <Route path="/login" element={<ComingSoon name="Sign in" />} />
     </Routes>
   )

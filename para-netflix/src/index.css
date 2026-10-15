@@ -13,6 +13,10 @@
   --on-cta: #000;
   --on-accent: #05070c;
   --error: #ff8a93;
+  /* ONE grey for the light pages: the paper-thin line under the header AND the background of
+     the footer area (the junior wants them to match), plus the footer text, just darker. */
+  --grey-line: #e6e6e6;
+  --grey-footer-text: #737373;
   --section-gap: 150px;   /* gap: posters -> closing email prompt -> footer links */
   --strip-margin: clamp(1.5rem, 6vw, 8rem);   /* side margin shared by the Featured Films strip and the footer */
 
@@ -44,4 +48,21 @@ body {
 button,
 input {
   font: inherit;
+}
+
+/* Light pages (Signup etc.) set data-theme="light" on <html> so even the overscroll area is white */
+:root[data-theme='light'] {
+  --bg: #fff;
+  --text: #333;
+  color-scheme: light;
+}
+
+/* Text for screen readers only (labels that the design shows as placeholders) */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
 }

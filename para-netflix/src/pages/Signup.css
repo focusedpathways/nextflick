@@ -1,0 +1,63 @@
+/* Signup form: two password fields and a red square Next button, all one column wide,
+   centered on the page (the column itself is centered by LightPage). */
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  text-align: left;   /* error messages start at the field's left edge */
+}
+
+.signup-field input {
+  width: 100%;
+  height: 50px;
+  padding: 0 1rem;
+  font-size: 1rem;
+  color: #333;
+  background: #fff;
+  border: 1px solid #8c8c8c;
+  border-radius: 0;   /* square, like the button */
+}
+
+.signup-field input::placeholder {
+  color: #737373;
+}
+
+.signup-field input:focus-visible {
+  outline: 2px solid #333;
+  outline-offset: 1px;
+}
+
+.signup-field input[aria-invalid='true'] {
+  border-color: var(--cta);
+}
+
+/* "p" rules from the page column would add margins and size here */
+.light-column .signup-error {
+  margin: 0.4rem 0 0;
+  font-size: 0.9rem;
+  line-height: 1.3;
+  color: var(--cta);
+}
+
+/* Next: solid Netflix-red square, white text, full width of the fields */
+.signup-next {
+  height: 56px;
+  margin-top: 0.75rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--cta);
+  border: 0;
+  border-radius: 0;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.signup-next:hover {
+  background: #c11119;
+}
+
+.signup-next:focus-visible {
+  outline: 2px solid #333;
+  outline-offset: 2px;
+}

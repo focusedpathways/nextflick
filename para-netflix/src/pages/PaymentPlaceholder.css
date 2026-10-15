@@ -1,0 +1,15 @@
+.light-column .payment-email {
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+  color: #737373;
+}
+
+.payment-back {
+  color: #333;
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.payment-back:hover {
+  color: var(--cta);
+}

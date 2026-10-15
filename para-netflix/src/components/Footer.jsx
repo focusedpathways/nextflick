@@ -13,13 +13,18 @@ const COLUMNS = [
   ['Terms of Use', 'Contact Us', 'Do Not Sell or Share My Personal Information'],
 ]
 
-export default function Footer() {
+// variant="dark" (Landing) or "light" (Signup: grey area that fills the bottom third of the
+// screen). showSignup=false drops the closing email prompt (someone already signing up
+// does not need it).
+export default function Footer({ variant = 'dark', showSignup = true }) {
   return (
-    <footer className="site-footer">
-      <div className="footer-cta">
-        <p>Ready to watch? Enter your email to create or restart your membership.</p>
-        <EmailCapture variant="footer" />
-      </div>
+    <footer className={`site-footer site-footer--${variant}`}>
+      {showSignup && (
+        <div className="footer-cta">
+          <p>Ready to watch? Enter your email to create or restart your membership.</p>
+          <EmailCapture variant="footer" />
+        </div>
+      )}
 
       <p className="footer-questions">
         Questions? Call <a href="tel:+18005550199">1-800-555-0199</a>

@@ -1,0 +1,42 @@
+/* White page: header / centered content / grey footer (bottom third of the screen) */
+.light-page {
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  color: #333;
+}
+
+.light-page__main {
+  flex: 1;                  /* takes the white area between the header and the grey footer */
+  display: grid;
+  place-items: center;      /* content is centered in the white area */
+  padding: 3rem 1.5rem;
+}
+
+.light-page .site-footer--light {
+  flex: none;
+}
+
+/* The centered column: headline, paragraph, form. */
+.light-column {
+  width: min(440px, 100%);
+  text-align: center;
+}
+
+.light-column h1 {
+  margin: 0 0 1rem;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-wrap: balance;
+  color: #333;
+}
+
+.light-column p {
+  margin: 0 0 1.75rem;
+  font-size: 1.1rem;
+  line-height: 1.45;
+  color: #333;
+}

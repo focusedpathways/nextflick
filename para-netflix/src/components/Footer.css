@@ -67,3 +67,40 @@
   font-size: 0.8rem;
   color: rgba(159, 176, 195, 0.65);
 }
+
+/* ---- light variant (Signup etc.) ----
+   The grey area is the lower third of the screen (at least 33.333vh; it grows if the
+   content needs more room). Its background is the same grey as the header line, and the
+   text is just darker than that grey. */
+.site-footer--light {
+  min-height: 33.333vh;
+  padding: 1.75rem var(--strip-margin) 1.5rem;   /* compact, so the content fits inside a third of a ~1000px-tall window */
+  background: var(--grey-line);
+  color: var(--grey-footer-text);
+}
+
+.site-footer--light .footer-questions a,
+.site-footer--light .footer-links a {
+  color: var(--grey-footer-text);
+}
+
+.site-footer--light .footer-questions a:hover,
+.site-footer--light .footer-links a:hover {
+  color: #333;
+}
+
+.site-footer--light .footer-legal {
+  color: var(--grey-footer-text);
+}
+
+.site-footer--light .footer-questions {
+  margin-bottom: 1.4rem;
+}
+
+.site-footer--light .footer-links li {
+  margin-bottom: 0.6rem;
+}
+
+.site-footer--light .footer-legal {
+  margin-top: 1.4rem;
+}

@@ -1,0 +1,79 @@
+/* Shared top bar. The Landing ("overlay") rules are moved here unchanged from Landing.css. */
+.site-header a {
+  text-decoration: none;
+}
+
+.site-header__nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Sign In: text only, no fill. Color and shadow depend on the variant. */
+.nav-account {
+  font-weight: 700;
+  font-size: 1.15rem;
+  padding: 0.5rem 0;
+  border-bottom: 2px solid transparent;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.nav-account:hover {
+  border-bottom-color: currentColor;
+}
+
+.nav-account:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 2px;
+}
+
+/* ---- overlay: Landing. Full width, dark gradient + soft blur so the logo and Sign In
+   stay readable over any frame of the video. ---- */
+.site-header--overlay {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 10;
+  background: linear-gradient(to bottom, rgba(5, 7, 12, 0.92), rgba(5, 7, 12, 0.6) 65%, transparent);
+}
+
+.site-header--overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  backdrop-filter: blur(8px);
+  mask-image: linear-gradient(to bottom, #000 55%, transparent);
+}
+
+.site-header--overlay .site-header__nav {
+  padding: 1rem var(--gutter) 1.6rem;
+}
+
+.site-header--overlay .nav-account {
+  color: var(--cta);
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.85), 0 0 2px rgba(0, 0, 0, 0.9);
+}
+
+.site-header--overlay .nav-account:hover {
+  color: var(--cta-hover);
+}
+
+/* ---- light: Signup etc. White, in the page flow, with a paper-thin grey line under it.
+   The line uses --grey-line, the same variable as the grey footer area. ---- */
+.site-header--light {
+  background: #fff;
+  border-bottom: 1px solid var(--grey-line);
+}
+
+.site-header--light .site-header__nav {
+  height: 5rem;
+  padding: 0 var(--gutter);
+}
+
+.site-header--light .nav-account {
+  color: #000;
+}
+
+.site-header--light .nav-account:hover {
+  color: #333;
+}

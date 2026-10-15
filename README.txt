@@ -10,8 +10,8 @@ SETUP
 
 PAGES
 [x] 1. Landing        /          APPROVED by the junior, committed on branch landing-page
-[ ] 2. Signup         /signup    email (prefilled from Landing) -> payment step,
-                                 validation + inline errors. Currently a placeholder.
+[x] 2. Signup         /signup    APPROVED by the junior ("looks good"), committed on landing-page.
+                                 Payment stays a placeholder page (/signup/payment).
 [ ] 3. Login          /login     email + password, error state. Currently a placeholder.
 [ ] 4. Who's Watching /profiles  profile picker, active profile in AuthContext
 [ ] 5. Browse         /browse    titles.json, Navbar, Hero, category Rows
@@ -248,3 +248,50 @@ COMMIT (junior): Landing page approved and committed on a new branch, landing-pa
   copyrighted studio artwork, so swap them for licensed art before ever pushing to a
   public GitHub repo. Tooling folders (.claude, .vscode, .playwright-mcp) are in the
   root .gitignore.
+
+----------------------------------------------------------------------
+SIGNUP PAGE: CURRENT STATE (page 2)   route /signup, placeholder /signup/payment
+----------------------------------------------------------------------
+Flow: Landing (email) -> Signup (password) -> Payment (placeholder) -> Who's Watching (later).
+Files
+  src/pages/Signup.jsx, Signup.css              the password form
+  src/pages/PaymentPlaceholder.jsx, .css        "Payment is omitted from this demo."
+  src/components/LightPage.jsx, .css            shared layout for the white pages
+  src/components/SiteHeader.jsx, .css           the header, shared by Landing and the light pages
+                                                (extracted from Landing; Landing is unchanged)
+  src/components/Logo.jsx                       new tone prop: "silver" (default) or "red"
+  src/components/Footer.jsx, .css               new variant ("dark" | "light") and showSignup
+
+Junior's spec, as built
+  - Logo: all red (reel, bar, wordmark = #e50914). Sign In: black text.
+  - Body white; paper-thin grey line (#e6e6e6, 1px) under the header.
+  - The lower third of the screen is grey = the SAME variable as the line (--grey-line).
+    Footer text is just darker (#737373). The footer has the usual contents (phone line,
+    four link columns, credit line) but not the email prompt.
+  - Centered column (440px): H1 "Create a password to start your membership"; paragraph
+    "Just a few more steps and you're done! We hate paperwork, too."; Password and Verify
+    password fields; red square button, white text, "Next".
+Defaults I chose (junior can change)
+  - Password rule: at least 8 characters and both fields must match. Messages appear under
+    the field ("Use at least 8 characters." / "Passwords do not match.") and focus moves to it.
+  - Square fields (matches the square button), 50px tall, 1px #8c8c8c border; button 56px.
+  - Next goes to /signup/payment, carrying ONLY the email in router state. The password is
+    never stored or forwarded (checked: not in history state, local/session storage, cookies).
+  - /signup opened directly (no email) still renders, no redirect.
+  - Footer is compact so its content (299px) fits inside a third of a ~1000px-tall window.
+    It is exactly a third in windows at least 897px tall and grows a bit in shorter ones.
+  - Footer text contrast is about 3.8:1 (the junior asked for "just darker" than the grey).
+    Below the 4.5:1 guideline; a darker grey (#6b6b6b is about 4.4:1) is an easy change.
+Verified (real browser, three window sizes): Landing unchanged by the header refactor (all
+  positions identical; 6 screenshot pairs with zero visibly differing pixels); header line,
+  logo fills, Sign In color, white page, grey third, centering (0px offsets), all password
+  scenarios, flow from Landing, Back / Sign In / logo links, no console errors.
+
+SIGNUP decisions log (junior)
+  - Landing committed first on branch landing-page (commit 7cba0c0), nothing pushed.
+  - Headline and paragraph centered. Next leads to a payment placeholder page.
+  - The paper-thin line is 1 CSS px; on retina screens that is the thinnest standard line.
+
+SIGNUP approved (junior: "looks good"). The defaults I had flagged are accepted as built:
+  footer text #737373 (about 3.8:1 contrast), square fields, 8-character password rule,
+  placeholder payment wording. Committed on branch landing-page (not pushed).

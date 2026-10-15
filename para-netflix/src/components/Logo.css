@@ -15,3 +15,8 @@
   stroke: currentColor;
   stroke-width: 0.35px;   /* a little heavier, like the reference lettering */
 }
+
+/* Red tone: the wordmark is red too (the reel and bar get their red from Logo.jsx) */
+.logo--red {
+  color: var(--cta);
+}
