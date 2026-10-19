@@ -21,18 +21,30 @@ function validate(values) {
 
 // The contact page: name, email, phone. Like the other form pages it does not know its place in a
 // flow: the route supplies `next`, `back` and any different wording, so the same page can set up
-// a new account or update contact details later. Demo only: nothing is saved. The email starts
-// filled in from router state (typed on Landing) and, if edited, the edited address goes forward.
+// a new account or update contact details later. The email starts filled in from router state
+// (typed on Landing) and, if edited, the edited address goes forward.
+//   onSubmit  optional ({ name, phone }) => Promise<{ error }>; the routes give saveContact, which saves
+//             them to the member's account. A message in `error` is shown instead of moving on.
+//             The email is not saved here: it stays the address the member signs in with.
 export default function Contact({
   next,
   back,
   homeTo,
   heading = 'How can we reach you?',
-  intro = 'This is a demo. Nothing you type here is saved.',
+  intro = 'We will use these details to reach you about your account.',
   submitLabel = 'Next',
+  onSubmit,
 }) {
   const navigate = useNavigate()
   const email = useLocation().state?.email ?? ''
+
+  async function handleValid(values) {
+    if (onSubmit) {
+      const { error } = await onSubmit({ name: values.fullName.trim(), phone: values.phone.trim() })
+      if (error) return { form: error }
+    }
+    navigate(next, { state: { email: values.email.trim() } })
+  }
 
   return (
     <FormStep
@@ -45,7 +57,7 @@ export default function Contact({
       fields={FIELDS}
       initialValues={{ email }}
       validate={validate}
-      onValid={(values) => navigate(next, { state: { email: values.email.trim() } })}
+      onValid={handleValid}
       submitLabel={submitLabel}
     />
   )

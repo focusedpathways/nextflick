@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import MemberHeader from './MemberHeader.jsx'
 import Footer from './Footer.jsx'
 import MoreInfo from './moreinfo/MoreInfo.jsx'
+import { useAuth } from '../context/authContext.js'
 import './MemberPage.css'
 
 // The shell of every page a signed-in member sees (Browse = Home, and My NextFlick): the header, the
@@ -14,9 +15,10 @@ import './MemberPage.css'
 //
 // Which film's pop-up is open (null = closed) is kept HERE, the common parent of everything that can
 // open it. The pop-up stays open while its More Like This cards switch films (onSelectFilm).
-// Not protected yet: that arrives with AuthContext.
+// Only signed-in members get here (RequireAuth in App.jsx); the email comes from their session.
 export default function MemberPage({ current, children }) {
-  const email = useLocation().state?.email
+  const routerEmail = useLocation().state?.email
+  const email = useAuth().email ?? routerEmail
   const navigate = useNavigate()
   const [selected, setSelected] = useState(null)
   const closeMoreInfo = useCallback(() => setSelected(null), [])

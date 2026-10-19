@@ -4,6 +4,7 @@ import Dropdown from './Dropdown.jsx'
 import SearchField from './SearchField.jsx'
 import { AvatarIcon, BellIcon, CaretIcon } from './icons.jsx'
 import notifications from '../data/notifications.json'
+import { useAuth } from '../context/authContext.js'
 import './MemberHeader.css'
 
 // The tabs after the logo. All four are links: Home (/browse) shows everything, Shows and Movies are the SAME page
@@ -23,6 +24,7 @@ const TABS = [
 //             filled pill and aria-current. The page decides it (Browse reads the filter from the address).
 //   email     the signed-in email when it is known (it arrives in router state from the login)
 export default function MemberHeader({ current = 'Home', email }) {
+  const { signOut } = useAuth()
   const accountState = email ? { email } : undefined
   const hasNotifications = notifications.length > 0
 
@@ -103,7 +105,7 @@ export default function MemberHeader({ current = 'Home', email }) {
               </ul>
               <div className="account__divider" />
               <ul className="account__list">
-                <li><Link to="/" onClick={close}>Sign out</Link></li>
+                <li><Link to="/" onClick={() => { close(); signOut() }}>Sign out</Link></li>
               </ul>
             </>
           )}

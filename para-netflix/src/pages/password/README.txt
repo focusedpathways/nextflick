@@ -24,11 +24,19 @@ The page in one paragraph
 Rules
   - Password: at least 8 characters, and both fields must match. One message at a time, under the field,
     and focus moves to it.
-  - The password is never stored or passed on. Only the email moves to the next step.
+  - Sign-up (route /signup): after the checks, Next calls registerUser (src/services/auth.js), which
+    runs supabase.auth.signUp(email, password). The account now exists in Supabase and a database
+    trigger adds the member's own rows in public.users and public.user_preferences (name and phone
+    start empty; the Contact step fills them in later). If Supabase refuses (email already used,
+    weak password, too many tries, offline) the reason shows above the button and the page stays.
+  - The password goes straight to Supabase and is never stored by the app or passed to another page.
+    Only the email moves to the next step.
+  - Without an onSubmit prop (the /account/password route) the page still just moves on: changing a
+    password is not connected yet.
 
 Props (set by the route in App.jsx)
   next (required), back, homeTo (where the logo goes; Landing unless the route says /browse), heading,
-  intro, submitLabel. Defaults are the sign-up wording.
+  intro, submitLabel, onSubmit (optional; /signup passes registerUser). Defaults are the sign-up wording.
 
 Try it
   cd para-netflix

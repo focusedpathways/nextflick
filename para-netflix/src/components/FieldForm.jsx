@@ -9,7 +9,10 @@ import './FieldForm.css'
 //   fields        [{ name, label, type?, autoComplete?, required? }] in the order shown
 //   initialValues { name: 'starting text' } for fields that start filled in
 //   validate      (values) => { name: 'message' }; an empty object means everything is fine
-//   onValid       (values) => runs once, only when validate found nothing wrong
+//   onValid       (values) => runs once, only when validate found nothing wrong. It may be async
+//                 (e.g. a call to Supabase) and may return { fieldName: 'message' } or
+//                 { form: 'message' } to show a problem the server found; the button is
+//                 disabled while it works.
 export default function FieldForm({
   idPrefix,
   fields,
@@ -22,17 +25,28 @@ export default function FieldForm({
     Object.fromEntries(fields.map((f) => [f.name, initialValues[f.name] ?? ''])),
   )
   const [errors, setErrors] = useState({})
+  const [submitting, setSubmitting] = useState(false)
   const idOf = (name) => `${idPrefix}-${name}`
 
-  function handleSubmit(event) {
-    event.preventDefault()
-    const found = validate(values)
+  function showErrors(found) {
     setErrors(found)
     const firstBad = fields.find((f) => found[f.name])
-    if (firstBad) {
-      document.getElementById(idOf(firstBad.name)).focus()
-    } else {
-      onValid(values)
+    if (firstBad) document.getElementById(idOf(firstBad.name)).focus()
+    return Boolean(firstBad)
+  }
+
+  async function handleSubmit(event) {
+    event.preventDefault()
+    if (submitting) return
+    if (showErrors(validate(values))) return
+    setSubmitting(true)
+    try {
+      const problems = await onValid(values)
+      if (problems) showErrors(problems)
+    } catch {
+      setErrors({ form: 'Something went wrong. Please try again.' })
+    } finally {
+      setSubmitting(false)
     }
   }
 
@@ -61,7 +75,9 @@ export default function FieldForm({
         )
       })}
 
-      <button type="submit" className="field-form__submit">{submitLabel}</button>
+      {errors.form && <p className="field-form__error" role="alert">{errors.form}</p>}
+
+      <button type="submit" className="field-form__submit" disabled={submitting}>{submitLabel}</button>
     </form>
   )
 }

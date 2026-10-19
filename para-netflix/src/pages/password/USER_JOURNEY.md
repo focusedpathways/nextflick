@@ -10,13 +10,13 @@ Code: `src/pages/password/Password.jsx` (the page), `src/components/FormStep.jsx
 1. The visitor arrives from Landing with their email already known (it comes in router state; it is not shown on this page).
 2. They read "Create a password to start your membership" and "Just a few more steps and you're done! We hate paperwork, too."
 3. They type a **Password** and type it again in **Verify password**.
-4. They press **Next**. If both checks pass, the app opens `/signup/contact` and carries only the email along.
+4. They press **Next**. If both checks pass, the app creates their account in Supabase (`supabase.auth.signUp`, via `src/services/auth.js`); the button is dimmed while it works. When the account is created, the app opens `/signup/contact` and carries only the email along.
 
 ## Rules the page checks
 
 - The password has at least **8 characters**.
 - The two passwords **match**.
-- The password is checked here and then dropped. It is never stored or sent on.
+- The password is checked here, sent to Supabase to create the account, and then dropped. The app never stores it or passes it to another page.
 
 ## What can go wrong
 
@@ -25,7 +25,10 @@ Code: `src/pages/password/Password.jsx` (the page), `src/components/FormStep.jsx
 | Password shorter than 8 characters | Message under Password: "Use at least 8 characters." Focus moves to the Password field. |
 | Password is long enough but Verify does not match | Message under Verify password: "Passwords do not match." Focus moves to the Verify field. |
 | Both fields empty and Next pressed | Same as the first row (Password is checked first, so its message shows). |
-| Opened directly at `/signup` with no email | The page still works. Next still goes on, with no email carried along. |
+| Opened directly at `/signup` with no email | The page renders. Next shows "We need your email first. Go to the home page and enter it to begin." and does not create an account. |
+| That email already has an account | Above the button: "An account with this email already exists. Try signing in instead." The visitor stays on the page. |
+| Supabase says the password is too weak | Above the button: "That password is too weak. Try a longer one with letters and numbers." |
+| Too many attempts, sign-ups turned off, or no connection | Above the button: a short matching message (or "We could not create your account. Please try again."). |
 
 ## Exits
 

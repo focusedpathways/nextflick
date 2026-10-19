@@ -19,8 +19,11 @@ function validate({ password, verify }) {
 // The password page: set a password. It knows nothing about WHERE it sits in a flow; the route
 // says what comes next (`next`), where Back goes (`back`) and, if the wording should differ,
 // the headline/line/button. The same page serves signing up and, later, resetting or changing a
-// password. The password is checked and dropped: never stored, never passed on. Only the email
-// (which arrived in router state) goes forward.
+// password. The password is checked and dropped: never stored, never passed on to another page.
+// Only the email (which arrived in router state) goes forward.
+//   onSubmit  optional (email, password) => Promise<{ error }>; when the route gives one (sign-up
+//             gives registerUser) it runs after the checks, and a message in `error` is shown
+//             instead of moving on. Without it (e.g. /account/password) the page just moves on.
 export default function Password({
   next,
   back,
@@ -28,9 +31,21 @@ export default function Password({
   heading = 'Create a password to start your membership',
   intro = "Just a few more steps and you're done! We hate paperwork, too.",
   submitLabel = 'Next',
+  onSubmit,
 }) {
   const navigate = useNavigate()
   const email = useLocation().state?.email
+
+  async function handleValid({ password }) {
+    if (onSubmit) {
+      if (!email) {
+        return { form: 'We need your email first. Go to the home page and enter it to begin.' }
+      }
+      const { error } = await onSubmit(email, password)
+      if (error) return { form: error }
+    }
+    navigate(next, { state: { email } })
+  }
 
   return (
     <FormStep
@@ -42,7 +57,7 @@ export default function Password({
       idPrefix="password"
       fields={FIELDS}
       validate={validate}
-      onValid={() => navigate(next, { state: { email } })}
+      onValid={handleValid}
       submitLabel={submitLabel}
     />
   )

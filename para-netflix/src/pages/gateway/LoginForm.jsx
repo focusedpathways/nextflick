@@ -2,6 +2,7 @@ import { useEffect, useId, useRef, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { EMAIL_PATTERN, MIN_PASSWORD_LENGTH } from '../../utils/validation.js'
 import { advancePick } from '../../utils/recommend.js'
+import { signInUser } from '../../services/auth.js'
 import '../../components/EmailCapture.css'   // the shared field look and the red button
 import './LoginForm.css'
 
@@ -12,18 +13,23 @@ const NEEDS_EMAIL = 'Enter your email above and we will send the reset link to i
 // match; LoginForm.css only adds the stacked layout. Controlled inputs: React state holds
 // what is typed. The email starts filled in when it arrives in router state (from the Billing step).
 //
-// Mocked sign-in (there is no backend and no stored accounts): any well-formed email with a
-// password that follows the Password page's rule is accepted and goes on to /browse (the home screen). Only the email
-// is passed on, never the password. The Forgot Password / Login row is the shared .cta-actions
-// layout (ShowcasePage.css).
+// Real sign-in through Supabase Auth (signInUser in services/auth.js): success goes on to /browse
+// (the home screen), a wrong email/password pair goes to /403, other errors show under the
+// password. Only the email is passed on, never the password. The Forgot Password / Login row is
+// the shared .cta-actions layout (ShowcasePage.css).
 //
 // "Forgot Password" is mocked too: no email is really sent. It needs a valid email in the field
 // (that is where the link would go), reports it to the page through onForgotPassword, and the
 // page changes its words. resetSent only changes this button's label to "Resend Link".
 export default function LoginForm({ onForgotPassword, resetSent, needsEmail = false }) {
-  const [email, setEmail] = useState(useLocation().state?.email ?? '')
+  const routerState = useLocation().state
+  const [email, setEmail] = useState(routerState?.email ?? '')
+  // Sent here by RequireAuth from a member page: go back there after signing in (only paths inside the app)
+  const asked = routerState?.from
+  const from = asked?.startsWith('/') && !asked.startsWith('//') ? asked : '/browse'
   const [password, setPassword] = useState('')
   const [errors, setErrors] = useState(() => (needsEmail ? { email: NEEDS_EMAIL } : {}))
+  const [busy, setBusy] = useState(false)
   const emailRef = useRef(null)
   const passwordRef = useRef(null)
   const navigate = useNavigate()
@@ -53,11 +59,22 @@ export default function LoginForm({ onForgotPassword, resetSent, needsEmail = fa
     } else if (found.password) {
       passwordRef.current.focus()
     } else {
-      // TODO (database, later): check the email and password here. When they do not match an
-      // account, send the visitor to the 403 page instead:
-      //   navigate('/403', { state: { email: trimmed } })
+      signIn(trimmed)
+    }
+  }
+
+  async function signIn(trimmed) {
+    setBusy(true)
+    const result = await signInUser(trimmed, password)
+    setBusy(false)
+    if (result.wrongCredentials) {
+      navigate('/403', { state: { email: trimmed } })
+    } else if (result.error) {
+      setErrors({ password: result.error })
+      passwordRef.current.focus()
+    } else {
       advancePick()   // a new login means a new featured film on the home screen
-      navigate('/browse', { state: { email: trimmed } })
+      navigate(from, { replace: true, state: { email: trimmed } })
     }
   }
 
@@ -115,7 +132,7 @@ export default function LoginForm({ onForgotPassword, resetSent, needsEmail = fa
         <button type="button" className="cta-link" onClick={handleForgotPassword}>
           {resetSent ? 'Resend Link' : 'Forgot Password'}
         </button>
-        <button type="submit" className="email-capture__btn">Login</button>
+        <button type="submit" className="email-capture__btn" disabled={busy}>Login</button>
       </div>
     </form>
   )

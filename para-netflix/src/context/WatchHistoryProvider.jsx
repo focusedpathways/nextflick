@@ -1,45 +1,31 @@
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useMemo } from 'react'
 import titles from '../data/titles.json'
 import { WatchHistoryContext } from './watchHistoryContext.js'
+import { useSyncedPreference } from './useSyncedPreference.js'
 
 // The titles a member has played and how far they got, shared by every page (the player writes it; the Continue
-// Watching rows read it) and kept in this browser, so it survives a reload. Stored under `nextflick:watching` as
-// a list of { id, minutes }, most recently played first. There is no account or database yet, so it belongs to
-// the browser, not to a person; with a database it would belong to the signed-in member.
+// Watching rows read it). A list of { id, minutes }, most recently played first: in the signed-in member's
+// user_preferences.watched, or in this browser (`nextflick:watching`) when signed out (useSyncedPreference).
 // Read it with useWatchHistory() (watchHistoryContext.js).
 const STORAGE_KEY = 'nextflick:watching'
 
-// Reading can fail (private window, blocked storage, or something odd stored): start empty then. Entries for
-// titles that no longer exist, or with a nonsense number of minutes, are dropped.
-function loadEntries() {
-  try {
-    const stored = JSON.parse(localStorage.getItem(STORAGE_KEY))
-    if (!Array.isArray(stored)) return []
-    return stored
-      .filter((e) => e && titles.some((t) => t.id === e.id) && Number.isFinite(e.minutes) && e.minutes >= 0)
-      .map((e) => ({ id: e.id, minutes: e.minutes }))
-  } catch {
-    return []
-  }
+// Entries for titles that no longer exist, or with a nonsense number of minutes, are dropped.
+function cleanEntries(stored) {
+  if (!Array.isArray(stored)) return []
+  return stored
+    .filter((e) => e && titles.some((t) => t.id === e.id) && Number.isFinite(e.minutes) && e.minutes >= 0)
+    .map((e) => ({ id: e.id, minutes: e.minutes }))
 }
 
 export function WatchHistoryProvider({ children }) {
-  const [entries, setEntries] = useState(loadEntries)
-
-  useEffect(() => {
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(entries))
-    } catch {
-      // nothing to do: the history just will not survive a reload
-    }
-  }, [entries])
+  const [entries, updateEntries] = useSyncedPreference('watched', STORAGE_KEY, cleanEntries)
 
   // stable functions (the player calls them from timers and effects)
   const record = useCallback(
-    (id, minutes) => setEntries((current) => [{ id, minutes }, ...current.filter((e) => e.id !== id)]),
-    [],
+    (id, minutes) => updateEntries((current) => [{ id, minutes }, ...current.filter((e) => e.id !== id)]),
+    [updateEntries],
   )
-  const finish = useCallback((id) => setEntries((current) => current.filter((e) => e.id !== id)), [])
+  const finish = useCallback((id) => updateEntries((current) => current.filter((e) => e.id !== id)), [updateEntries])
 
   const value = useMemo(
     () => ({

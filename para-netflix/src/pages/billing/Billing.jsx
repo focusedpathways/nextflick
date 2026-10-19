@@ -13,18 +13,36 @@ const FIELDS = [
 
 // The billing page: where the bill goes. It sets up a new account today and is the page to reuse
 // for updating billing information later: the route supplies `next`, `back` and any different
-// wording. Demo only: nothing is charged and nothing is saved. No card number is asked for (that
-// would need a real payment provider). The email passes through untouched.
+// wording. Nothing is charged, and no card number is asked for (that would need a real payment
+// provider). The email passes through untouched.
+//   onSubmit  optional (address) => Promise<{ error }>; the routes give saveBilling. `address` uses the
+//             billing_profiles column names (the form's own field names are translated below).
 export default function Billing({
   next,
   back,
   homeTo,
   heading = 'Add your billing address',
-  intro = 'This is a demo. Nothing is charged, and nothing you type here is saved.',
+  intro = 'This is a demo: nothing is charged. We keep the address with your account.',
   submitLabel = 'Next',
+  onSubmit,
 }) {
   const navigate = useNavigate()
   const email = useLocation().state?.email
+
+  async function handleValid(values) {
+    if (onSubmit) {
+      const { error } = await onSubmit({
+        street: values.address1.trim(),
+        apartment: values.address2.trim() || null,
+        city: values.city.trim(),
+        state: values.region.trim(),
+        zip: values.postal.trim(),
+        country: values.country.trim(),
+      })
+      if (error) return { form: error }
+    }
+    navigate(next, { state: { email } })
+  }
 
   return (
     <FormStep
@@ -36,7 +54,7 @@ export default function Billing({
       idPrefix="billing"
       fields={FIELDS}
       validate={(values) => validateRequired(FIELDS, values)}
-      onValid={() => navigate(next, { state: { email } })}
+      onValid={handleValid}
       submitLabel={submitLabel}
     />
   )
