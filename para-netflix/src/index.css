@@ -50,7 +50,7 @@ input {
   font: inherit;
 }
 
-/* Light pages (Signup etc.) set data-theme="light" on <html> so even the overscroll area is white */
+/* Light pages (the form pages) set data-theme="light" on <html> so even the overscroll area is white */
 :root[data-theme='light'] {
   --bg: #fff;
   --text: #333;

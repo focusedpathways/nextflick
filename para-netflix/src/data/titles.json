@@ -1,92 +1,802 @@
 [
   {
     "id": "angel-and-the-badman",
+    "type": "movie",
     "title": "Angel and the Badman",
-    "genre": "Western / Drama",
+    "genres": [
+      "Action",
+      "Adventure",
+      "Romance"
+    ],
     "year": 2026,
+    "runtime": 98,
     "rating": "PG-13",
+    "advisory": "violence/bloody images, suggestive material and language",
+    "cast": [
+      "Zachary Levi",
+      "Meg Fraser",
+      "Sean Bridgers"
+    ],
     "image": "/posters/angel-and-the-badman.jpg",
-    "imdb": "https://www.imdb.com/title/tt39850240/"
+    "imdb": "https://www.imdb.com/title/tt39850240/",
+    "synopsis": "A wounded gunslinger is nursed back to health by a Quaker family, and has to decide whether the old way of living by the gun is still his."
   },
   {
     "id": "the-king-of-kings",
+    "type": "movie",
     "title": "The King of Kings",
-    "genre": "Animation / Faith",
+    "genres": [
+      "Animation",
+      "Biography",
+      "Family"
+    ],
     "year": 2025,
+    "runtime": 103,
     "rating": "PG",
+    "advisory": "thematic material, violent content and some scary moments",
+    "cast": [
+      "Kenneth Branagh",
+      "Uma Thurman",
+      "Mark Hamill"
+    ],
     "image": "/posters/the-king-of-kings.jpg",
-    "imdb": "https://www.imdb.com/title/tt7967302/"
+    "imdb": "https://www.imdb.com/title/tt7967302/",
+    "synopsis": "Charles Dickens tells his young son the story of Jesus, and the boy sees the world he is hearing about come to life."
   },
   {
     "id": "david",
+    "type": "movie",
     "title": "David",
-    "genre": "Animation / Faith",
+    "genres": [
+      "Animation",
+      "Adventure",
+      "Drama"
+    ],
     "year": 2025,
+    "runtime": 109,
     "rating": "PG",
+    "advisory": "action/violence and some scary images",
+    "cast": [
+      "Brandon Engman",
+      "Brian Stivale",
+      "Shahar Tavoch"
+    ],
     "image": "/posters/david.jpg",
-    "imdb": "https://www.imdb.com/title/tt15678738/"
+    "imdb": "https://www.imdb.com/title/tt15678738/",
+    "synopsis": "A shepherd boy with a sling and a lot of faith rises from the fields of Bethlehem to face a giant and become Israel's king."
   },
   {
     "id": "the-wild-robot",
+    "type": "movie",
     "title": "The Wild Robot",
-    "genre": "Animation / Family",
+    "genres": [
+      "Animation",
+      "Adventure",
+      "Family"
+    ],
     "year": 2024,
+    "runtime": 102,
     "rating": "PG",
+    "advisory": "action/peril and thematic elements",
+    "cast": [
+      "Lupita Nyong'o",
+      "Pedro Pascal",
+      "Kit Connor"
+    ],
     "image": "/posters/the-wild-robot.jpg",
-    "imdb": "https://www.imdb.com/title/tt29623480/"
+    "imdb": "https://www.imdb.com/title/tt29623480/",
+    "synopsis": "A robot washed up on a wild island learns to survive among the animals, and ends up raising an orphaned gosling as her own."
   },
   {
     "id": "paddington-in-peru",
+    "type": "movie",
     "title": "Paddington in Peru",
-    "genre": "Family / Comedy",
+    "genres": [
+      "Adventure",
+      "Comedy",
+      "Family"
+    ],
     "year": 2024,
+    "runtime": 106,
     "rating": "PG",
+    "advisory": "action, mild rude humor and some thematic elements",
+    "cast": [
+      "Hugh Bonneville",
+      "Emily Mortimer",
+      "Ben Whishaw"
+    ],
     "image": "/posters/paddington-in-peru.jpg",
-    "imdb": "https://www.imdb.com/title/tt5822536/"
+    "imdb": "https://www.imdb.com/title/tt5822536/",
+    "synopsis": "Paddington heads back to Peru to visit Aunt Lucy, and a missing-person mystery turns the trip into a jungle adventure."
   },
   {
     "id": "i-can-only-imagine",
+    "type": "movie",
     "title": "I Can Only Imagine",
-    "genre": "Drama / Music",
+    "genres": [
+      "Biography",
+      "Drama",
+      "Family"
+    ],
     "year": 2018,
+    "runtime": 110,
     "rating": "PG",
+    "advisory": "thematic elements including some violence",
+    "cast": [
+      "John Michael Finley",
+      "Madeline Carroll",
+      "Dennis Quaid"
+    ],
     "image": "/posters/i-can-only-imagine.jpg",
-    "imdb": "https://www.imdb.com/title/tt6450186/"
+    "imdb": "https://www.imdb.com/title/tt6450186/",
+    "synopsis": "The story behind the best-selling song, as a young man faces his past and the father who shaped it."
   },
   {
     "id": "the-prince-of-egypt",
+    "type": "movie",
     "title": "The Prince of Egypt",
-    "genre": "Animation / Epic",
+    "genres": [
+      "Animation",
+      "Adventure",
+      "Drama"
+    ],
     "year": 1998,
+    "runtime": 99,
     "rating": "PG",
+    "advisory": "intense depiction of thematic elements",
+    "cast": [
+      "Val Kilmer",
+      "Ralph Fiennes",
+      "Michelle Pfeiffer"
+    ],
     "image": "/posters/the-prince-of-egypt.jpg",
-    "imdb": "https://www.imdb.com/title/tt0120794/"
+    "imdb": "https://www.imdb.com/title/tt0120794/",
+    "synopsis": "Raised as a prince, Moses learns who he really is and leads his people out of Egypt in this animated epic."
   },
   {
     "id": "war-room",
+    "type": "movie",
     "title": "War Room",
-    "genre": "Drama / Faith",
+    "genres": [
+      "Drama"
+    ],
     "year": 2015,
+    "runtime": 120,
     "rating": "PG",
+    "advisory": "thematic elements throughout",
+    "cast": [
+      "Priscilla C. Shirer",
+      "T.C. Stallings",
+      "Karen Abercrombie"
+    ],
     "image": "/posters/war-room.jpg",
-    "imdb": "https://www.imdb.com/title/tt3832914/"
+    "imdb": "https://www.imdb.com/title/tt3832914/",
+    "synopsis": "A couple's marriage is falling apart until an older neighbor teaches them what prayer can change."
   },
   {
     "id": "soul-surfer",
+    "type": "movie",
     "title": "Soul Surfer",
-    "genre": "Sport / Drama",
+    "genres": [
+      "Biography",
+      "Drama",
+      "Family"
+    ],
     "year": 2011,
+    "runtime": 106,
     "rating": "PG",
+    "advisory": "an intense accident sequence and some thematic material",
+    "cast": [
+      "AnnaSophia Robb",
+      "Dennis Quaid",
+      "Helen Hunt"
+    ],
     "image": "/posters/soul-surfer.jpg",
-    "imdb": "https://www.imdb.com/title/tt1596346/"
+    "imdb": "https://www.imdb.com/title/tt1596346/",
+    "synopsis": "Teen surfer Bethany Hamilton loses an arm to a shark, and fights her way back onto the board."
   },
   {
     "id": "chariots-of-fire",
+    "type": "movie",
     "title": "Chariots of Fire",
-    "genre": "Sport / Drama",
+    "genres": [
+      "Biography",
+      "Drama",
+      "Sport"
+    ],
     "year": 1981,
+    "runtime": 125,
     "rating": "PG",
+    "cast": [
+      "Ben Cross",
+      "Ian Charleson",
+      "Nicholas Farrell"
+    ],
     "image": "/posters/chariots-of-fire.jpg",
-    "imdb": "https://www.imdb.com/title/tt0082158/"
+    "imdb": "https://www.imdb.com/title/tt0082158/",
+    "synopsis": "Two British runners train for the 1924 Olympics, one running for glory and the other for his faith."
+  },
+  {
+    "id": "top-gun-maverick",
+    "type": "movie",
+    "title": "Top Gun: Maverick",
+    "genres": [
+      "Action",
+      "Drama"
+    ],
+    "year": 2022,
+    "runtime": 130,
+    "rating": "PG-13",
+    "advisory": "sequences of intense action, and some strong language",
+    "cast": [
+      "Tom Cruise",
+      "Jennifer Connelly",
+      "Miles Teller"
+    ],
+    "image": "/posters/top-gun-maverick.jpg",
+    "imdb": "https://www.imdb.com/title/tt1745960/",
+    "synopsis": "Decades after flight school, Maverick returns to train a group of young Top Gun graduates for a mission that leaves no room for error."
+  },
+  {
+    "id": "f1",
+    "type": "movie",
+    "title": "F1",
+    "genres": [
+      "Drama",
+      "Sport"
+    ],
+    "year": 2025,
+    "runtime": 155,
+    "rating": "PG-13",
+    "advisory": "strong language, and action",
+    "cast": [
+      "Brad Pitt",
+      "Damson Idris",
+      "Javier Bardem"
+    ],
+    "image": "/posters/f1.jpg",
+    "imdb": "https://www.imdb.com/title/tt16311594/",
+    "synopsis": "A veteran driver who walked away from Formula 1 comes back to race for a struggling team and to mentor its hot-headed rookie."
+  },
+  {
+    "id": "ford-v-ferrari",
+    "type": "movie",
+    "title": "Ford v Ferrari",
+    "genres": [
+      "Action",
+      "Biography",
+      "Drama"
+    ],
+    "year": 2019,
+    "runtime": 152,
+    "rating": "PG-13",
+    "advisory": "some language and peril",
+    "cast": [
+      "Matt Damon",
+      "Christian Bale",
+      "Jon Bernthal"
+    ],
+    "image": "/posters/ford-v-ferrari.jpg",
+    "imdb": "https://www.imdb.com/title/tt1950186/",
+    "synopsis": "Car designer Carroll Shelby and driver Ken Miles build a Ford race car to beat Ferrari at the 1966 24 Hours of Le Mans."
+  },
+  {
+    "id": "the-martian",
+    "type": "movie",
+    "title": "The Martian",
+    "genres": [
+      "Adventure",
+      "Drama",
+      "Sci-Fi"
+    ],
+    "year": 2015,
+    "runtime": 144,
+    "rating": "PG-13",
+    "advisory": "some strong language, injury images, and brief nudity",
+    "cast": [
+      "Matt Damon",
+      "Jessica Chastain",
+      "Kristen Wiig"
+    ],
+    "image": "/posters/the-martian.jpg",
+    "imdb": "https://www.imdb.com/title/tt3659388/",
+    "synopsis": "Left behind on Mars after a storm, an astronaut has to grow food, ration everything and science his way back home."
+  },
+  {
+    "id": "apollo-13",
+    "type": "movie",
+    "title": "Apollo 13",
+    "genres": [
+      "Adventure",
+      "Drama",
+      "History"
+    ],
+    "year": 1995,
+    "runtime": 140,
+    "rating": "PG",
+    "advisory": "language and emotional intensity",
+    "cast": [
+      "Tom Hanks",
+      "Bill Paxton",
+      "Kevin Bacon"
+    ],
+    "image": "/posters/apollo-13.jpg",
+    "imdb": "https://www.imdb.com/title/tt0112384/",
+    "synopsis": "An oxygen tank explodes on the way to the Moon, and three astronauts and mission control race to bring the crew home alive."
+  },
+  {
+    "id": "twisters",
+    "type": "movie",
+    "title": "Twisters",
+    "genres": [
+      "Action",
+      "Adventure",
+      "Thriller"
+    ],
+    "year": 2024,
+    "runtime": 122,
+    "rating": "PG-13",
+    "advisory": "intense action and peril, some language and injury images",
+    "cast": [
+      "Daisy Edgar-Jones",
+      "Glen Powell",
+      "Anthony Ramos"
+    ],
+    "image": "/posters/twisters.jpg",
+    "imdb": "https://www.imdb.com/title/tt12584954/",
+    "synopsis": "A storm chaser with a painful past teams up with a showboating storm-chasing YouTuber as a season of record tornadoes hits Oklahoma."
+  },
+  {
+    "id": "national-treasure",
+    "type": "movie",
+    "title": "National Treasure",
+    "genres": [
+      "Action",
+      "Adventure",
+      "Mystery"
+    ],
+    "year": 2004,
+    "runtime": 131,
+    "rating": "PG",
+    "advisory": "action violence and some scary images",
+    "cast": [
+      "Nicolas Cage",
+      "Diane Kruger",
+      "Justin Bartha"
+    ],
+    "image": "/posters/national-treasure.jpg",
+    "imdb": "https://www.imdb.com/title/tt0368891/",
+    "synopsis": "A historian follows clues hidden in the Declaration of Independence to find a treasure the Founding Fathers kept secret."
+  },
+  {
+    "id": "hidden-figures",
+    "type": "movie",
+    "title": "Hidden Figures",
+    "genres": [
+      "Biography",
+      "Drama",
+      "History"
+    ],
+    "year": 2016,
+    "runtime": 127,
+    "rating": "PG",
+    "advisory": "thematic elements and some language",
+    "cast": [
+      "Taraji P. Henson",
+      "Octavia Spencer",
+      "Janelle Monáe"
+    ],
+    "image": "/posters/hidden-figures.jpg",
+    "imdb": "https://www.imdb.com/title/tt4846340/",
+    "synopsis": "Three Black women mathematicians at NASA help send John Glenn into orbit while breaking barriers at work."
+  },
+  {
+    "id": "remember-the-titans",
+    "type": "movie",
+    "title": "Remember the Titans",
+    "genres": [
+      "Biography",
+      "Comedy",
+      "Drama"
+    ],
+    "year": 2000,
+    "runtime": 113,
+    "rating": "PG",
+    "advisory": "thematic elements and some language",
+    "cast": [
+      "Denzel Washington",
+      "Will Patton",
+      "Wood Harris"
+    ],
+    "image": "/posters/remember-the-titans.jpg",
+    "imdb": "https://www.imdb.com/title/tt0210945/",
+    "synopsis": "In 1971 Virginia, a newly integrated high school football team learns to play, and live, as one."
+  },
+  {
+    "id": "the-secret-life-of-walter-mitty",
+    "type": "movie",
+    "title": "The Secret Life of Walter Mitty",
+    "genres": [
+      "Adventure",
+      "Comedy",
+      "Drama"
+    ],
+    "year": 2013,
+    "runtime": 114,
+    "rating": "PG",
+    "advisory": "some crude comments, language and action violence",
+    "cast": [
+      "Ben Stiller",
+      "Kristen Wiig",
+      "Jon Daly"
+    ],
+    "image": "/posters/the-secret-life-of-walter-mitty.jpg",
+    "imdb": "https://www.imdb.com/title/tt0359950/",
+    "synopsis": "A daydreaming photo editor at Life magazine sets off on a real adventure across Greenland and Iceland to find a missing negative."
+  },
+  {
+    "id": "back-to-the-future",
+    "type": "movie",
+    "title": "Back to the Future",
+    "genres": [
+      "Adventure",
+      "Comedy",
+      "Sci-Fi"
+    ],
+    "year": 1985,
+    "runtime": 116,
+    "rating": "PG",
+    "cast": [
+      "Michael J. Fox",
+      "Christopher Lloyd",
+      "Lea Thompson"
+    ],
+    "image": "/posters/back-to-the-future.jpg",
+    "imdb": "https://www.imdb.com/title/tt0088763/",
+    "synopsis": "A teenager is accidentally sent back to 1955 in a time-traveling DeLorean and has to make sure his parents fall in love."
+  },
+  {
+    "id": "the-greatest-showman",
+    "type": "movie",
+    "title": "The Greatest Showman",
+    "genres": [
+      "Biography",
+      "Drama",
+      "Musical"
+    ],
+    "year": 2017,
+    "runtime": 105,
+    "rating": "PG",
+    "advisory": "thematic elements including a brawl",
+    "cast": [
+      "Hugh Jackman",
+      "Michelle Williams",
+      "Zac Efron"
+    ],
+    "image": "/posters/the-greatest-showman.jpg",
+    "imdb": "https://www.imdb.com/title/tt1485796/",
+    "synopsis": "P. T. Barnum dreams up a show of unforgettable performers and builds a spectacle that changes entertainment."
+  },
+  {
+    "id": "free-solo",
+    "type": "movie",
+    "title": "Free Solo",
+    "genres": [
+      "Documentary",
+      "Adventure",
+      "Sport"
+    ],
+    "year": 2018,
+    "runtime": 100,
+    "rating": "PG-13",
+    "advisory": "brief strong language",
+    "cast": [
+      "Alex Honnold",
+      "Tommy Caldwell",
+      "Jimmy Chin"
+    ],
+    "image": "/posters/free-solo.jpg",
+    "imdb": "https://www.imdb.com/title/tt7775622/",
+    "synopsis": "Climber Alex Honnold attempts to scale the 3,000-foot face of El Capitan with no ropes at all."
+  },
+  {
+    "id": "interstellar",
+    "type": "movie",
+    "title": "Interstellar",
+    "genres": [
+      "Adventure",
+      "Sci-Fi"
+    ],
+    "year": 2014,
+    "runtime": 169,
+    "rating": "PG-13",
+    "advisory": "some intense perilous action and brief strong language",
+    "cast": [
+      "Matthew McConaughey",
+      "Anne Hathaway",
+      "Jessica Chastain"
+    ],
+    "image": "/posters/interstellar.jpg",
+    "imdb": "https://www.imdb.com/title/tt0816692/",
+    "synopsis": "With Earth's crops failing, a former pilot leads a mission through a wormhole to find humanity a new home."
+  },
+  {
+    "id": "sully",
+    "type": "movie",
+    "title": "Sully",
+    "genres": [
+      "Biography",
+      "Drama",
+      "History"
+    ],
+    "year": 2016,
+    "runtime": 96,
+    "rating": "PG-13",
+    "advisory": "some peril and brief strong language",
+    "cast": [
+      "Tom Hanks",
+      "Aaron Eckhart",
+      "Laura Linney"
+    ],
+    "image": "/posters/sully.jpg",
+    "imdb": "https://www.imdb.com/title/tt3263904/",
+    "synopsis": "After landing a crippled airliner on the Hudson River and saving everyone on board, a pilot faces an investigation into his choice."
+  },
+  {
+    "id": "miracle",
+    "type": "movie",
+    "title": "Miracle",
+    "genres": [
+      "Biography",
+      "Drama",
+      "History"
+    ],
+    "year": 2004,
+    "runtime": 135,
+    "rating": "PG",
+    "advisory": "language and some rough sports action",
+    "cast": [
+      "Kurt Russell",
+      "Patricia Clarkson",
+      "Nathan West"
+    ],
+    "image": "/posters/miracle.jpg",
+    "imdb": "https://www.imdb.com/title/tt0349825/",
+    "synopsis": "Coach Herb Brooks turns a team of college players into the U.S. squad that takes on the Soviet Union at the 1980 Winter Olympics."
+  },
+  {
+    "id": "planet-earth-ii",
+    "type": "show",
+    "title": "Planet Earth II",
+    "genres": [
+      "Documentary",
+      "Family"
+    ],
+    "year": 2016,
+    "runtime": 50,
+    "seasons": 1,
+    "rating": "TV-G",
+    "cast": [
+      "David Attenborough",
+      "Chadden Hunter",
+      "Gordon Buchanan"
+    ],
+    "image": "/posters/planet-earth-ii.jpg",
+    "imdb": "https://www.imdb.com/title/tt5491994/",
+    "synopsis": "David Attenborough travels to islands, mountains, jungles, deserts, grasslands and cities to show how the world's wild animals survive."
+  },
+  {
+    "id": "cosmos",
+    "type": "show",
+    "title": "Cosmos: A Spacetime Odyssey",
+    "genres": [
+      "Documentary",
+      "Family"
+    ],
+    "year": 2014,
+    "runtime": 45,
+    "seasons": 1,
+    "rating": "TV-PG",
+    "cast": [
+      "Neil deGrasse Tyson",
+      "Carl Sagan",
+      "Christopher Emerson"
+    ],
+    "image": "/posters/cosmos.jpg",
+    "imdb": "https://www.imdb.com/title/tt2395695/",
+    "synopsis": "Astrophysicist Neil deGrasse Tyson takes viewers on a journey through space and time to explore how we came to understand the universe."
+  },
+  {
+    "id": "brooklyn-nine-nine",
+    "type": "show",
+    "title": "Brooklyn Nine-Nine",
+    "genres": [
+      "Comedy",
+      "Crime"
+    ],
+    "year": 2013,
+    "runtime": 22,
+    "seasons": 8,
+    "rating": "TV-14",
+    "cast": [
+      "Andy Samberg",
+      "Stephanie Beatriz",
+      "Terry Crews"
+    ],
+    "image": "/posters/brooklyn-nine-nine.jpg",
+    "imdb": "https://www.imdb.com/title/tt2467372/",
+    "synopsis": "A talented but immature detective and a very serious new captain take on cases, and each other's habits, at a New York City police precinct."
+  },
+  {
+    "id": "parks-and-recreation",
+    "type": "show",
+    "title": "Parks and Recreation",
+    "genres": [
+      "Comedy"
+    ],
+    "year": 2009,
+    "runtime": 22,
+    "seasons": 7,
+    "rating": "TV-14",
+    "cast": [
+      "Amy Poehler",
+      "Jim O'Heir",
+      "Nick Offerman"
+    ],
+    "image": "/posters/parks-and-recreation.jpg",
+    "imdb": "https://www.imdb.com/title/tt1266020/",
+    "synopsis": "Leslie Knope, an enthusiastic city official in a small Indiana town, tries to make her community better, one overwhelmed colleague at a time."
+  },
+  {
+    "id": "friday-night-lights",
+    "type": "show",
+    "title": "Friday Night Lights",
+    "genres": [
+      "Drama",
+      "Sport"
+    ],
+    "year": 2006,
+    "runtime": 45,
+    "seasons": 5,
+    "rating": "TV-14",
+    "cast": [
+      "Kyle Chandler",
+      "Connie Britton",
+      "Zach Gilford"
+    ],
+    "image": "/posters/friday-night-lights.jpg",
+    "imdb": "https://www.imdb.com/title/tt0758745/",
+    "synopsis": "In a small Texas town where high school football is everything, a new head coach, his family and his players try to hold the team and the town together."
+  },
+  {
+    "id": "the-amazing-race",
+    "type": "show",
+    "title": "The Amazing Race",
+    "genres": [
+      "Adventure",
+      "Family",
+      "Game-Show"
+    ],
+    "year": 2001,
+    "runtime": 60,
+    "seasons": 39,
+    "rating": "TV-PG",
+    "cast": [
+      "Phil Keoghan",
+      "Joyce Robinson",
+      "Uchenna Agu"
+    ],
+    "image": "/posters/the-amazing-race.jpg",
+    "imdb": "https://www.imdb.com/title/tt0285335/",
+    "synopsis": "Teams of two race around the world, solving clues and taking on challenges, for a million-dollar prize."
+  },
+  {
+    "id": "macgyver",
+    "type": "show",
+    "title": "MacGyver",
+    "genres": [
+      "Action",
+      "Adventure",
+      "Crime"
+    ],
+    "year": 1985,
+    "runtime": 48,
+    "seasons": 7,
+    "rating": "TV-PG",
+    "cast": [
+      "Richard Dean Anderson",
+      "Dana Elcar",
+      "Bruce McGill"
+    ],
+    "image": "/posters/macgyver.jpg",
+    "imdb": "https://www.imdb.com/title/tt0088559/",
+    "synopsis": "A secret agent solves impossible problems with ingenuity and everyday objects instead of guns."
+  },
+  {
+    "id": "mythbusters",
+    "type": "show",
+    "title": "MythBusters",
+    "genres": [
+      "Documentary",
+      "Mystery",
+      "Reality-TV"
+    ],
+    "year": 2003,
+    "runtime": 44,
+    "seasons": 16,
+    "rating": "TV-PG",
+    "cast": [
+      "Robert Lee",
+      "Jamie Hyneman",
+      "Adam Savage"
+    ],
+    "image": "/posters/mythbusters.jpg",
+    "imdb": "https://www.imdb.com/title/tt0383126/",
+    "synopsis": "Two special-effects experts test popular myths with experiments, to find out what is true and what is just a good story."
+  },
+  {
+    "id": "monk",
+    "type": "show",
+    "title": "Monk",
+    "genres": [
+      "Comedy",
+      "Crime",
+      "Drama"
+    ],
+    "year": 2002,
+    "runtime": 44,
+    "seasons": 8,
+    "rating": "TV-PG",
+    "cast": [
+      "Tony Shalhoub",
+      "Jason Gray-Stanford",
+      "Ted Levine"
+    ],
+    "image": "/posters/monk.jpg",
+    "imdb": "https://www.imdb.com/title/tt0312172/",
+    "synopsis": "A brilliant San Francisco detective with obsessive-compulsive disorder solves crimes the police cannot, while struggling with a fear of nearly everything."
+  },
+  {
+    "id": "psych",
+    "type": "show",
+    "title": "Psych",
+    "genres": [
+      "Comedy",
+      "Crime",
+      "Mystery"
+    ],
+    "year": 2006,
+    "runtime": 44,
+    "seasons": 9,
+    "rating": "TV-PG",
+    "cast": [
+      "James Roday Rodriguez",
+      "Dulé Hill",
+      "Timothy Omundson"
+    ],
+    "image": "/posters/psych.jpg",
+    "imdb": "https://www.imdb.com/title/tt0491738/",
+    "synopsis": "A man with a gift for observation pretends to be a psychic detective and helps the Santa Barbara police solve cases with his best friend."
+  },
+  {
+    "id": "downton-abbey",
+    "type": "show",
+    "title": "Downton Abbey",
+    "genres": [
+      "Drama",
+      "Romance"
+    ],
+    "year": 2010,
+    "runtime": 60,
+    "seasons": 6,
+    "rating": "TV-PG",
+    "cast": [
+      "Hugh Bonneville",
+      "Phyllis Logan",
+      "Elizabeth McGovern"
+    ],
+    "image": "/posters/downton-abbey.jpg",
+    "imdb": "https://www.imdb.com/title/tt1606375/",
+    "synopsis": "The lives of an aristocratic family and the servants who keep their English country estate running are changed by the early twentieth century."
   }
 ]

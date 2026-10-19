@@ -1,0 +1,183 @@
+/* The pop-up's hero. It is a size container, so cqw / cqh below mean 1% of THIS area's width / height
+   and everything inside sizes itself from it (the same idea as the page's hero). */
+.mi-hero {
+  --poster-h: calc(100cqh - 6rem);
+  --poster-w: calc(var(--poster-h) * 0.67511);   /* 480 / 711, the posters' proportions */
+  --poster-right: clamp(4.5rem, 9cqw, 8rem);
+  position: relative;
+  isolation: isolate;
+  container-type: size;
+  height: clamp(26rem, 62vh, 40rem);
+  display: flex;
+  align-items: flex-end;
+  /* `clip`, not `hidden`: a box with overflow:hidden can still be SCROLLED by the browser when a button
+     inside it takes focus, and this one has an oversized glow inside, so Tab slid the whole hero up and
+     exposed the glow's edge. `clip` crops the same way but can never scroll. */
+  overflow: hidden;
+  overflow: clip;
+}
+
+/* the glow (shared GlowBackdrop), oversized so the blur's soft edges fall outside the area */
+.mi-hero__backdrop {
+  position: absolute;
+  inset: -12%;
+  z-index: -2;
+}
+
+/* darkens the left (for the title), and the bottom so the picture melts into the panel below */
+.mi-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(90deg, rgba(16, 20, 29, 0.92) 0%, rgba(16, 20, 29, 0.6) 40%, rgba(16, 20, 29, 0.15) 75%),
+    linear-gradient(0deg, #10141d 0%, rgba(16, 20, 29, 0) 42%);
+}
+
+.mi-hero__poster {
+  position: absolute;
+  top: 3rem;
+  right: var(--poster-right);
+  height: var(--poster-h);
+  aspect-ratio: 480 / 711;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.65);
+  animation: mi-poster-in 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) 0.1s backwards;
+}
+
+@keyframes mi-poster-in {
+  from {
+    opacity: 0;
+    translate: 0 20px;
+    scale: 0.97;
+  }
+}
+
+/* the title and the buttons, bottom left; never reaching within 2rem of the poster */
+.mi-hero__content {
+  position: relative;
+  max-width: max(16rem, calc(100cqw - var(--poster-right) - var(--poster-w) - 2rem));
+  padding: 0 2.2rem 2.2rem;
+}
+
+.mi-hero__title {
+  margin: 0 0 1.3rem;
+  font-size: clamp(1.6rem, 3.6cqw, 3.2rem);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  line-height: 1.08;
+  text-transform: uppercase;
+  text-wrap: balance;
+  background: var(--metal-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 2px 14px rgba(0, 0, 0, 0.8));
+  animation: mi-up 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) 0.15s backwards;
+}
+
+@keyframes mi-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+}
+
+.mi-hero__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  animation: mi-up 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) 0.28s backwards;
+}
+
+/* Play: the same white pill as the page's hero */
+.mi-hero__play {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  height: 3rem;
+  padding: 0 1.6rem 0 1.2rem;
+  font: inherit;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #05070c;
+  background: #fff;
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.mi-hero__play:hover {
+  background: #dfe5ed;
+}
+
+/* the round buttons: add to My List, like. Filled white while switched on. */
+.mi-hero__round {
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  color: var(--text);
+  background: rgba(16, 20, 29, 0.6);
+  border: 2px solid rgba(238, 243, 249, 0.55);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.mi-hero__round:hover {
+  border-color: #fff;
+  background: rgba(238, 243, 249, 0.18);
+}
+
+.mi-hero__round[aria-pressed='true'] {
+  color: #05070c;
+  background: #fff;
+  border-color: #fff;
+}
+
+/* the X, top right */
+.mi-hero__close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 2.6rem;
+  height: 2.6rem;
+  color: var(--text);
+  background: rgba(10, 13, 20, 0.7);
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.mi-hero__close:hover {
+  background: rgba(238, 243, 249, 0.25);
+}
+
+.mi-hero__play:focus-visible,
+.mi-hero__round:focus-visible,
+.mi-hero__close:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mi-hero__poster,
+  .mi-hero__title,
+  .mi-hero__actions {
+    animation: none;
+  }
+
+  .mi-hero__play,
+  .mi-hero__round,
+  .mi-hero__close {
+    transition: none;
+  }
+}

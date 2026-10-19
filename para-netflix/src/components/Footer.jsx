@@ -13,7 +13,8 @@ const COLUMNS = [
   ['Terms of Use', 'Contact Us', 'Do Not Sell or Share My Personal Information'],
 ]
 
-// variant="dark" (Landing) or "light" (Signup: grey area that fills the bottom third of the
+// Used by Landing (dark, with the email prompt), Browse (dark, showSignup={false}) and the form pages (light).
+// variant="dark" (Landing) or "light" (the form pages: grey area that fills the bottom third of the
 // screen). showSignup=false drops the closing email prompt (someone already signing up
 // does not need it).
 export default function Footer({ variant = 'dark', showSignup = true }) {

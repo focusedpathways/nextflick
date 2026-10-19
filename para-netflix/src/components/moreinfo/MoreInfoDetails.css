@@ -1,0 +1,85 @@
+/* The facts under the hero: the summary on the left, the cast and the genres on the right. The grid's
+   columns are 1.9 : 1, so the summary gets the wide side (like the reference) and a long cast list wraps
+   instead of pushing the summary around. */
+.mi-details {
+  display: grid;
+  grid-template-columns: minmax(0, 1.9fr) minmax(0, 1fr);
+  gap: 1.2rem 3rem;
+  align-items: start;
+  /* A solid background that overlaps the hero by one pixel: at fractional window sizes the hero's bottom
+     edge lands between two pixels and a hairline of the glow's edge showed through there. */
+  position: relative;
+  margin-top: -1px;
+  background: #10141d;
+  padding: calc(0.3rem + 1px) 2.2rem 2.6rem;
+}
+
+/* reset the browser's default margins; :where() keeps this rule's specificity at zero so the spacing set
+   on the classes below is not overridden by it */
+.mi-details :where(p, dl, dd) {
+  margin: 0;
+}
+
+/* year and running time */
+.mi-details__line {
+  display: flex;
+  gap: 0.9rem;
+  margin-bottom: 0.55rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+/* the rating in a small outlined box, then the reason it got that rating */
+.mi-details__rating {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.4rem 0.7rem;
+  margin-bottom: 1.1rem;
+  font-size: 0.95rem;
+}
+
+.mi-details__badge {
+  padding: 0.05rem 0.45rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--text);
+  border: 1px solid rgba(238, 243, 249, 0.55);
+  border-radius: 3px;
+}
+
+.mi-details__advisory {
+  color: var(--text-muted);
+}
+
+/* the short summary */
+.mi-details__summary {
+  max-width: 42rem;
+  font-size: 1.1rem;
+  line-height: 1.55;
+  color: var(--text);
+}
+
+/* cast, then genres: a muted label and the names after it */
+.mi-details__facts {
+  display: grid;
+  gap: 0.8rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.mi-details__facts dt {
+  display: inline;
+  color: var(--text-muted);
+}
+
+.mi-details__facts dt::after {
+  content: ' ';
+}
+
+.mi-details__facts dd {
+  display: inline;
+  color: var(--text);
+}

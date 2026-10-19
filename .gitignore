@@ -3,3 +3,8 @@
 .vscode/
 .playwright-mcp/
 .DS_Store
+single.env
+.env.local
+
+.env
+.env.local

@@ -58,7 +58,7 @@
   color: var(--cta-hover);
 }
 
-/* ---- light: Signup etc. White, in the page flow, with a paper-thin grey line under it.
+/* ---- light: the form pages. White, in the page flow, with a paper-thin grey line under it.
    The line uses --grey-line, the same variable as the grey footer area. ---- */
 .site-header--light {
   background: #fff;

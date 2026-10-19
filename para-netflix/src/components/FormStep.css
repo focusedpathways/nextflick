@@ -1,0 +1,12 @@
+/* The Back link under a form step (moved from PaymentPlaceholder.css, where it was .payment-back) */
+.light-column .form-step__back {
+  display: inline-block;
+  margin-top: 1.25rem;
+  color: #333;
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.light-column .form-step__back:hover {
+  color: var(--cta);
+}

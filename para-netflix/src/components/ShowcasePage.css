@@ -1,0 +1,105 @@
+/* Shared layout of the Landing page and the Gateway (moved here unchanged from Landing.css;
+   only the class names changed: .landing -> .showcase, .landing-main -> .showcase__main). */
+.showcase {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.showcase__main {
+  flex: 1;
+  min-height: 100vh;
+  min-height: 100svh;   /* the visible height, even with browser toolbars */
+  display: grid;
+  place-items: center;
+  /* the nav bar is about 80px tall; padding the top by that centers the callout in the
+     visible area below it (junior's choice), not in the whole window */
+  padding: 5rem var(--gutter) 0;
+}
+
+/* Callout: no box. Text floats over the video; a soft shadow keeps it readable and a
+   very faint feathered darkening (no edge) sits behind it. Sizes are 1.33x the
+   earlier 480px version. */
+.cta-card {
+  position: relative;
+  isolation: isolate;
+  width: min(640px, 100%);
+  text-align: left;   /* headline and sub-line start at the form's left edge */
+}
+
+.cta-card::before {
+  content: '';
+  position: absolute;
+  inset: -4rem -7rem;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, rgba(5, 7, 12, 0.5), rgba(5, 7, 12, 0) 68%);
+}
+
+.cta-card h1 {
+  margin: 0 0 0.93rem;
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  text-wrap: balance;
+  background: var(--metal-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 2px 14px rgba(0, 0, 0, 0.85));
+}
+
+.cta-card p {
+  margin: 0 0 3.45rem;
+  color: var(--text);
+  font-size: 1.27rem;
+  text-shadow: 0 1px 14px rgba(0, 0, 0, 0.9), 0 0 2px rgba(0, 0, 0, 0.8);
+}
+
+/* Callout actions (shared by the Gateway and the error pages): two equal halves under the
+   form or text. A plain white text action sits at the left edge; the red button (the
+   .email-capture__btn look from EmailCapture.css, on a <button> or a <Link>) fills the right
+   half, so it is exactly half the callout's width and ends at its right edge. */
+.cta-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: stretch;
+  margin-top: 0.6rem;
+}
+
+.cta-actions .email-capture__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3.2rem;   /* the same height as a field */
+  text-decoration: none;
+}
+
+/* Plain white text, no fill: a quiet secondary action next to the red one */
+.cta-link {
+  justify-self: start;
+  align-self: center;
+  padding: 0.5rem 0;
+  font: inherit;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text);
+  text-decoration: none;
+  background: none;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.9), 0 0 2px rgba(0, 0, 0, 0.8);
+  transition: border-color 0.15s;
+}
+
+.cta-link:hover {
+  border-bottom-color: currentColor;
+}
+
+.cta-link:focus-visible,
+.cta-actions .email-capture__btn:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 2px;
+}

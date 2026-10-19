@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './BackgroundVideo.css'
 
-const VIDEO_SRC = '/videos/landing-loop.mp4'
+export const VIDEO_SRC = '/videos/landing-loop.mp4'
 const POSTER_SRC = '/images/landing-poster.jpg'
 
 // Full-bleed looping clip. If the video fails to load, the still poster

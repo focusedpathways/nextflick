@@ -1,0 +1,50 @@
+/* The dimmed page behind the pop-up. It scrolls (not the page) when the pop-up is taller than the window. */
+.moreinfo {
+  position: fixed;
+  inset: 0;
+  z-index: 100;   /* above the sticky header (20) */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 2rem 0 3rem;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: rgba(2, 4, 8, 0.78);
+  backdrop-filter: blur(3px);
+  animation: moreinfo-fade 0.2s ease-out;
+}
+
+@keyframes moreinfo-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+/* The panel itself: 70rem (1120px), or the window width less 2rem on each side */
+.moreinfo__dialog {
+  flex: none;
+  width: min(70rem, calc(100vw - 4rem));
+  overflow: hidden;
+  overflow: clip;   /* see MoreInfoHero.css: clip cannot be scrolled by focus */
+  color: var(--text);
+  background: #10141d;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7);
+  outline: none;   /* it is focused only so screen readers announce it; it is not a control */
+  animation: moreinfo-rise 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+@keyframes moreinfo-rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.985);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .moreinfo,
+  .moreinfo__dialog {
+    animation: none;
+  }
+}

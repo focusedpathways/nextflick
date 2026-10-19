@@ -2,9 +2,9 @@ import './PosterCard.css'
 
 // A film poster. If the film has an `image` (a file in public/posters/), that photo
 // is shown. Otherwise the poster is drawn in code: two-tone gradient, a shape per film,
-// genre tag and a big title (palette and shape come from src/data/titles.json).
+// genre tag (the film's first genre) and a big title (palette and shape come from src/data/titles.json).
 // The Browse page can reuse this card later.
-export default function PosterCard({ title, genre, year, shape = 'diagonal', palette, image }) {
+export default function PosterCard({ title, genres, year, shape = 'diagonal', palette, image }) {
   if (image) {
     return (
       <figure className="poster poster--image">
@@ -19,7 +19,7 @@ export default function PosterCard({ title, genre, year, shape = 'diagonal', pal
       className={`poster poster--${shape}`}
       style={{ '--c1': c1, '--c2': c2, '--c3': c3 }}
     >
-      <span className="poster-genre">{genre}</span>
+      <span className="poster-genre">{genres?.[0]}</span>
       <figcaption className="poster-caption">
         <span className="poster-title">{title}</span>
       </figcaption>

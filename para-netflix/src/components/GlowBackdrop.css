@@ -1,0 +1,59 @@
+/* The shared glow (see GlowBackdrop.jsx). Moved here unchanged from Hero.css; only the class and
+   animation names changed (.hero__backdrop-art -> .glow__art, .hero__backdrop-video -> .glow__video). */
+.glow {
+  position: absolute;
+  inset: 0;
+}
+
+.glow__art {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  filter: blur(46px) saturate(1.3);
+  opacity: 0.7;
+  animation: glow-drift 26s ease-in-out infinite alternate, glow-art-in 0.9s ease-out backwards;
+  will-change: transform;
+}
+
+@keyframes glow-art-in {
+  from {
+    opacity: 0;
+  }
+}
+
+/* The moving part of the glow: a video, blurred so far that it cannot be recognised. `overlay`
+   blending keeps the poster's colors and lets the video's light and dark patches slide across
+   them. Slowed to half speed in Hero.jsx. The contrast is squeezed (and the brightness raised) on
+   purpose: the montage cuts between very dark and very bright shots, and unsqueezed the glow pulsed
+   about 4x between its dimmest and brightest frames; now it is about 1.4x, a slow flow of light.
+   (Measured as mean brightness of the glow at twelve points through the loop.) */
+.glow__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(60px) saturate(1.2) contrast(0.35) brightness(1.7);
+  mix-blend-mode: overlay;
+  opacity: 0.65;
+}
+
+@keyframes glow-drift {
+  from {
+    transform: translate3d(-2%, -1%, 0) scale(1.05) rotate(0deg);
+  }
+  to {
+    transform: translate3d(3%, 2%, 0) scale(1.18) rotate(4deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glow__video {
+    display: none;
+  }
+
+  .glow__art {
+    animation: none;
+  }
+}

@@ -1,0 +1,194 @@
+.watch {
+  position: relative;
+  isolation: isolate;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+  overflow: clip;
+  color: var(--text);
+  background: #000;
+}
+
+/* the stand-in footage fills the screen */
+.watch__video {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* "reduce motion": the film's poster on a dark screen instead of the video */
+.watch__poster {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: -2;
+  height: 72vh;
+  width: auto;
+  aspect-ratio: 480 / 711;
+  object-fit: cover;
+  transform: translate(-50%, -50%);
+  border-radius: 12px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7);
+}
+
+/* darker bands at the top and the bottom keep the title and the controls readable over any frame */
+.watch::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 22%),
+    linear-gradient(0deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 32%);
+  pointer-events: none;
+}
+
+.watch__top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+  padding: 1.4rem var(--gutter);
+}
+
+.watch__title {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.8);
+}
+
+.watch__back,
+.watch__play {
+  display: grid;
+  place-items: center;
+  flex: none;
+  color: var(--text);
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.watch__back {
+  width: 2.9rem;
+  height: 2.9rem;
+  background: rgba(16, 20, 29, 0.65);
+  backdrop-filter: blur(6px);
+}
+
+.watch__back:hover {
+  background: rgba(238, 243, 249, 0.25);
+}
+
+.watch__bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0 var(--gutter) 2rem;
+}
+
+.watch__caption {
+  margin: 0 0 0.9rem;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.9);
+}
+
+.watch__controls {
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+}
+
+.watch__play {
+  width: 3.2rem;
+  height: 3.2rem;
+  color: #05070c;
+  background: #fff;
+}
+
+.watch__play:hover {
+  background: #dfe5ed;
+}
+
+.watch__time {
+  flex: none;
+  min-width: 9.5rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.9);
+}
+
+/* The progress bar is a real range input (so the arrow keys move it); it is drawn by hand: the part played so
+   far is silver (--fill is set from the clock), the rest a faint line, with a round handle. */
+.watch__bar {
+  flex: 1;
+  height: 1.6rem;
+  margin: 0;
+  background: transparent;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.watch__bar::-webkit-slider-runnable-track {
+  height: 5px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #dfe6ee var(--fill), rgba(238, 243, 249, 0.28) var(--fill));
+}
+
+.watch__bar::-moz-range-track {
+  height: 5px;
+  border-radius: 999px;
+  background: rgba(238, 243, 249, 0.28);
+}
+
+.watch__bar::-moz-range-progress {
+  height: 5px;
+  border-radius: 999px;
+  background: #dfe6ee;
+}
+
+.watch__bar::-webkit-slider-thumb {
+  width: 15px;
+  height: 15px;
+  margin-top: -5px;
+  border: 0;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.18);
+  -webkit-appearance: none;
+}
+
+.watch__bar::-moz-range-thumb {
+  width: 15px;
+  height: 15px;
+  border: 0;
+  border-radius: 50%;
+  background: #fff;
+}
+
+.watch__back:focus-visible,
+.watch__play:focus-visible,
+.watch__bar:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .watch__back,
+  .watch__play {
+    transition: none;
+  }
+}

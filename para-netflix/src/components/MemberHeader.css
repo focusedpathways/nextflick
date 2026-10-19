@@ -1,0 +1,170 @@
+/* The home screen's top bar. Stays at the top while the page scrolls under it. The side margin is
+   --gutter, the same as the logo on the other pages. */
+.member-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+  height: 4.5rem;
+  padding: 0 var(--gutter);
+  background: linear-gradient(to bottom, rgba(5, 7, 12, 0.96), rgba(5, 7, 12, 0.82));
+  backdrop-filter: blur(10px);
+}
+
+.member-header a {
+  text-decoration: none;
+}
+
+.member-header__logo {
+  flex: none;
+}
+
+.member-header__logo:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 4px;
+}
+
+/* ---- tabs: Home / Shows / Movies / My NextFlick. The current one is a soft filled pill ---- */
+.member-nav {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.member-nav__tab {
+  padding: 0.5rem 1.1rem;
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  border-radius: 999px;
+  transition: color 0.15s, background 0.15s;
+}
+
+.member-nav__tab:hover {
+  color: var(--text);
+}
+
+.member-nav__tab:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 2px;
+}
+
+.member-nav__tab--active {
+  font-weight: 700;
+  color: var(--text);
+  background: rgba(238, 243, 249, 0.14);
+}
+
+/* ---- right side: search, bell, profile ---- */
+.member-header__tools {
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+  min-width: 0;   /* lets the search field (the only part that can shrink) give way in a narrower window */
+  margin-left: auto;
+}
+
+/* panel headings, shared by both dropdowns */
+.dropdown__heading {
+  margin: 0;
+  padding: 0.5rem 1.1rem 0.4rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* ---- notifications: the bell, a small count badge, and a list ---- */
+.notifications__icon {
+  position: relative;
+  display: grid;
+  place-items: center;
+}
+
+/* the red count badge: shown only while there are notifications (red is otherwise for actions) */
+.notifications__badge {
+  position: absolute;
+  top: -0.4rem;
+  right: -0.55rem;
+  min-width: 1.1rem;
+  height: 1.1rem;
+  padding: 0 0.25rem;
+  display: grid;
+  place-items: center;
+  font-size: 0.7rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #fff;
+  background: var(--cta);
+  border-radius: 999px;
+}
+
+.notifications__panel {
+  width: 22rem;
+}
+
+.notifications__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.notifications__item {
+  padding: 0.75rem 1.1rem;
+  border-top: 1px solid var(--border);
+}
+
+.notifications__text {
+  margin: 0;
+  font-size: 0.98rem;
+  line-height: 1.35;
+}
+
+.notifications__when {
+  margin: 0.25rem 0 0;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+/* ---- account: the profile icon, a caret, and a list of links ---- */
+.account__panel {
+  width: 15.5rem;
+}
+
+.account__email {
+  margin: 0;
+  padding: 0.6rem 1.1rem 0.3rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  overflow-wrap: anywhere;
+}
+
+.account__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.account__list a {
+  display: block;
+  padding: 0.6rem 1.1rem;
+  font-size: 1rem;
+  color: var(--text);
+}
+
+.account__list a:hover {
+  background: rgba(238, 243, 249, 0.1);
+}
+
+.account__list a:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: -2px;
+}
+
+.account__divider {
+  margin: 0.4rem 0;
+  border-top: 1px solid var(--border);
+}

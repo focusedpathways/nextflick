@@ -1,0 +1,144 @@
+/* "More Like This": a heading, then cards three across. The section lines up with the details above it
+   (same 2.2rem side padding). */
+.mi-like {
+  padding: 0.4rem 2.2rem 2.8rem;
+}
+
+.mi-like__heading {
+  margin: 0 0 1.1rem;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.mi-like__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* A card is one button: the picture on top, the facts under it */
+.mi-like__card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  overflow: hidden;
+  font: inherit;
+  text-align: left;
+  color: var(--text);
+  background: #181e2b;
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.mi-like__card:hover {
+  background: #202838;
+  transform: translateY(-3px);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.45);
+}
+
+.mi-like__card:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 2px;
+}
+
+/* the picture: wide like the reference. The poster is shown whole, centered, over a blurred copy of
+   itself that fills the sides. */
+.mi-like__pic {
+  position: relative;
+  display: block;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  overflow: clip;
+  background: #0b0e15;
+}
+
+.mi-like__pic::before {
+  content: '';
+  position: absolute;
+  inset: -25%;
+  background: var(--pic) center / cover;
+  filter: blur(20px) saturate(1.25);
+  opacity: 0.85;
+}
+
+/* The poster is positioned (out of the flow), so its natural size cannot stretch the 16:9 box: with the
+   poster in the flow, the box grew to the poster's own height and the pictures came out tall, not wide. */
+.mi-like__pic img {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  height: 100%;
+  width: auto;
+  aspect-ratio: 480 / 711;
+  object-fit: cover;
+  transform: translateX(-50%);
+  box-shadow: 0 0 18px rgba(0, 0, 0, 0.55);
+}
+
+/* the running time, top right of the picture, like the reference */
+.mi-like__time {
+  position: absolute;
+  top: 0.55rem;
+  right: 0.6rem;
+  padding: 0.1rem 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text);
+  background: rgba(8, 10, 16, 0.72);
+  border-radius: 4px;
+}
+
+.mi-like__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 0.9rem 1rem 1.1rem;
+}
+
+/* the rating in a small outlined box, then the year */
+.mi-like__meta {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.mi-like__badge {
+  padding: 0.02rem 0.4rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--text);
+  border: 1px solid rgba(238, 243, 249, 0.5);
+  border-radius: 3px;
+}
+
+/* the summary, cut at three lines like the reference */
+.mi-like__summary {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: 0.92rem;
+  line-height: 1.45;
+  color: var(--text);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mi-like__card,
+  .mi-like__card:hover {
+    transition: none;
+    transform: none;
+  }
+}

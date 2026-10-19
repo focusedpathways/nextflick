@@ -1,33 +1,13 @@
-import { useEffect, useRef, useState } from 'react'
 import PosterCard from './PosterCard.jsx'
-import titles from '../data/titles.json'
+import { topTen } from '../utils/recommend.js'
+import useRowScroll from './useRowScroll.js'
 import './FeaturedRow.css'
 
-// "Featured Films": a horizontally scrolling row of ranked posters with a big outlined
+// "Featured Films": the Top 10 (topTen() in utils/recommend.js), a horizontally scrolling row of ranked posters with a big outlined
 // number overlapping each card, and arrow buttons to page the row left/right.
 export default function FeaturedRow() {
-  const scroller = useRef(null)
-  const [canLeft, setCanLeft] = useState(false)
-  const [canRight, setCanRight] = useState(true)
-
-  // Show each arrow only when there is more to scroll in that direction
-  function updateArrows() {
-    const el = scroller.current
-    if (!el) return
-    setCanLeft(el.scrollLeft > 8)
-    setCanRight(el.scrollLeft + el.clientWidth < el.scrollWidth - 8)
-  }
-
-  useEffect(() => {
-    updateArrows()
-    window.addEventListener('resize', updateArrows)
-    return () => window.removeEventListener('resize', updateArrows)
-  }, [])
-
-  function page(direction) {
-    const el = scroller.current
-    el.scrollBy({ left: direction * el.clientWidth * 0.8, behavior: 'smooth' })
-  }
+  // the scrolling and the arrows' show/hide logic is shared with Browse's rows
+  const { scroller, canLeft, canRight, update: updateArrows, page } = useRowScroll()
 
   return (
     <section className="featured" aria-labelledby="featured-heading">
@@ -41,7 +21,7 @@ export default function FeaturedRow() {
         )}
 
         <ol className="featured-row" ref={scroller} onScroll={updateArrows} tabIndex={0} aria-label="Featured films, scroll sideways">
-          {titles.map((film, index) => (
+          {topTen().map((film, index) => (
             <li className="featured-item" key={film.id}>
               <span className="featured-rank" aria-hidden="true">{index + 1}</span>
               <PosterCard {...film} />

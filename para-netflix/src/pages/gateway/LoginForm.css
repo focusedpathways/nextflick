@@ -1,0 +1,17 @@
+/* Login form layout. The fields and the red button get their look from EmailCapture.css
+   (the same classes the Landing form uses); this file only stacks them. */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.login-form__field input {
+  width: 100%;
+}
+
+/* two errors can show at once, so they are tighter than the Landing form's single error */
+.email-capture.login-form .email-capture__error {
+  margin: 0.5rem 0 0;
+  font-size: 1.1rem;
+}

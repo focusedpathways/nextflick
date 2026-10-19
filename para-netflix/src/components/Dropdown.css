@@ -1,0 +1,50 @@
+.dropdown {
+  position: relative;
+}
+
+.dropdown__button {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem;
+  color: var(--text);
+  background: none;
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.dropdown__button:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 2px;
+}
+
+/* The panel opens under the button, its right edge on the button's right edge */
+.dropdown__panel {
+  position: absolute;
+  top: calc(100% + 0.7rem);
+  right: 0;
+  z-index: 30;
+  min-width: 14rem;
+  padding: 0.5rem 0;
+  color: var(--text);
+  background: rgba(9, 13, 21, 0.96);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(12px);
+  animation: dropdown-in 0.14s ease-out;
+}
+
+@keyframes dropdown-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dropdown__panel {
+    animation: none;
+  }
+}

@@ -1,13 +1,15 @@
-/* Signup form: two password fields and a red square Next button, all one column wide,
-   centered on the page (the column itself is centered by LightPage). */
-.signup-form {
+/* FieldForm: fields and a red square submit button, all one column wide, centered on the page
+   (the column itself is centered by LightPage). Moved here unchanged from Signup.css; only the
+   class names changed (.field-form -> .field-form, .field-form__field -> .field-form__field,
+   .field-form__error -> .field-form__error, .field-form__submit -> .field-form__submit). */
+.field-form {
   display: flex;
   flex-direction: column;
   gap: 0.85rem;
   text-align: left;   /* error messages start at the field's left edge */
 }
 
-.signup-field input {
+.field-form__field input {
   width: 100%;
   height: 50px;
   padding: 0 1rem;
@@ -18,29 +20,29 @@
   border-radius: 0;   /* square, like the button */
 }
 
-.signup-field input::placeholder {
+.field-form__field input::placeholder {
   color: #737373;
 }
 
-.signup-field input:focus-visible {
+.field-form__field input:focus-visible {
   outline: 2px solid #333;
   outline-offset: 1px;
 }
 
-.signup-field input[aria-invalid='true'] {
+.field-form__field input[aria-invalid='true'] {
   border-color: var(--cta);
 }
 
 /* "p" rules from the page column would add margins and size here */
-.light-column .signup-error {
+.light-column .field-form__error {
   margin: 0.4rem 0 0;
   font-size: 0.9rem;
   line-height: 1.3;
   color: var(--cta);
 }
 
-/* Next: solid Netflix-red square, white text, full width of the fields */
-.signup-next {
+/* Submit ("Next"): solid Netflix-red square, white text, full width of the fields */
+.field-form__submit {
   height: 56px;
   margin-top: 0.75rem;
   font-size: 1.25rem;
@@ -53,11 +55,11 @@
   transition: background 0.15s;
 }
 
-.signup-next:hover {
+.field-form__submit:hover {
   background: #c11119;
 }
 
-.signup-next:focus-visible {
+.field-form__submit:focus-visible {
   outline: 2px solid #333;
   outline-offset: 2px;
 }

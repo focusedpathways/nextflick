@@ -1,0 +1,25 @@
+.member-page {
+  min-height: 100vh;
+  background: var(--bg);
+}
+
+.member-page__main {
+  padding: 0.5rem var(--gutter) 3rem;
+}
+
+/* A stack of rows (headings + thumbnails). Browse puts it under its hero (.member-rows--below-hero). */
+.member-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+}
+
+.member-rows--below-hero {
+  margin-top: 2.2rem;
+}
+
+/* The footer (the Landing page's) under the last row. On these pages its content keeps to the same left
+   and right lines as the rows (--gutter), instead of Landing's wider strip margin. */
+.member-page .site-footer {
+  padding: 4rem var(--gutter) 3rem;
+}

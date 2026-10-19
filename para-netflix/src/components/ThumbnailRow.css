@@ -1,0 +1,158 @@
+/* A row of thumbnails under a heading. The thumbnail width follows the window; everything else in the
+   row (gaps, arrows) is derived from it, so a row scales as a unit.
+   The row's left and right limits are exactly the hero's (junior): it sits in the same column as the
+   hero, and nothing in it (strip, cut-off thumbnail, scroll buttons) reaches past those two lines. */
+.thumb-row {
+  --thumb-w: clamp(120px, 10.5vw, 220px);
+}
+
+.thumb-row__heading {
+  margin: 0 0 0.6rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.thumb-row__wrap {
+  position: relative;
+}
+
+/* The strip scrolls sideways only, with no scrollbar. overflow-y is set on purpose: with overflow-x
+   alone the strip would also scroll vertically and swallow the page's up/down scrolling while the
+   pointer is over it. The top/bottom padding gives a hovered thumbnail room to lift; there is no side
+   padding, so the strip's clipping edges ARE the hero's left and right lines. */
+.thumb-row__strip {
+  display: flex;
+  gap: calc(var(--thumb-w) * 0.07);
+  margin: 0;
+  padding: 0.7rem 0;
+  list-style: none;
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+
+.thumb-row__strip::-webkit-scrollbar {
+  display: none;
+}
+
+.thumb-row__strip li {
+  flex: none;
+}
+
+/* The thumbnail: a button that is just the picture, with rounded corners */
+.thumb {
+  display: block;
+  width: var(--thumb-w);
+  padding: 0;
+  overflow: hidden;
+  background: #11141b;
+  border: 0;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.5);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.thumb img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 480 / 711;   /* the poster files' proportions */
+  object-fit: cover;
+}
+
+.thumb:hover {
+  transform: translateY(-4px) scale(1.04);
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.65);
+}
+
+/* the first and last thumbnails grow inward, so the strip's edges never clip them */
+.thumb-row__strip li:first-child .thumb {
+  transform-origin: left center;
+}
+
+.thumb-row__strip li:last-child .thumb {
+  transform-origin: right center;
+}
+
+.thumb:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .thumb,
+  .thumb:hover {
+    transition: none;
+    transform: none;
+  }
+}
+
+/* Scroll buttons, one on each side of every row, just inside the row's (= the hero's) left and right
+   lines, over the ends of the strip, like the Landing row's arrows (FeaturedRow.css): a tall dark
+   rounded block with a big chevron, sized from the thumbnail width. Dimmed and inactive when there is
+   nothing more to scroll that way. */
+.thumb-row__arrow {
+  --arrow-w: max(1.8rem, calc(var(--thumb-w) * 0.17));
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: var(--arrow-w);
+  height: max(4rem, calc(var(--thumb-w) * 0.42));
+  transform: translateY(-50%);
+  font-size: calc(var(--thumb-w) * 0.16);
+  line-height: 1;
+  color: #fff;
+  background: rgba(40, 40, 46, 0.85);
+  border: 0;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.15s, opacity 0.15s;
+}
+
+.thumb-row__arrow:hover:not(:disabled) {
+  background: rgba(80, 80, 90, 0.95);
+}
+
+.thumb-row__arrow:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 2px;
+}
+
+.thumb-row__arrow:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.thumb-row__arrow--left {
+  left: 0.4rem;
+}
+
+.thumb-row__arrow--right {
+  right: 0.4rem;
+}
+
+/* ---- wrap mode (My List): all the thumbnails at once, in a wrapping grid, no sideways scrolling ---- */
+.thumb-row__strip--wrap {
+  flex-wrap: wrap;
+  row-gap: calc(var(--thumb-w) * 0.1);
+  overflow: visible;
+}
+
+/* in a grid a hovered thumbnail only lifts: growing would push the left-hand ones past the left line */
+.thumb-row__strip--wrap .thumb:hover {
+  transform: translateY(-4px);
+}
+
+/* the message shown instead of the thumbnails when a list is empty */
+.thumb-row__empty {
+  margin: 0;
+  padding: 0.4rem 0 0.6rem;
+  font-size: 1.05rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+}

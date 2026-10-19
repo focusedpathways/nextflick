@@ -1,0 +1,336 @@
+/* The feature card: rounded, dark, with the pick's art glowing behind it */
+.hero {
+  position: relative;
+  /* the 38rem floor keeps the poster wide enough (about 308px) for the two badges under it, side by side */
+  height: clamp(38rem, 74vh, 50rem);
+  overflow: hidden;
+  overflow: clip;   /* not scrollable by focus (the glow inside is oversized); same crop as hidden */
+  border-radius: 20px;
+  background: #07090d;
+}
+
+.hero {
+  --px: 0;   /* pointer position across the card, -1 (left/top) to 1 (right/bottom); set by Hero.jsx */
+  --py: 0;
+}
+
+.hero__stage {
+  position: absolute;
+  inset: 0;
+  isolation: isolate;
+  display: flex;
+  align-items: flex-end;
+
+  /* The stage is a size container: cqw / cqh below mean 1% of the CARD's width / height, so the
+     poster, the text column and the title all size themselves from the card, not the window. The
+     poster is as tall as the card allows (leaving room under it for the badge row), but never more
+     than 34% of the card's width, so on a narrow window it shrinks and leaves the text its room. */
+  container-type: size;
+  --poster-h: min(calc(100cqh - 9.5rem), calc(34cqw / 0.67511));
+  --poster-w: calc(var(--poster-h) * 0.67511);   /* 480 / 711, the posters' proportions */
+  /* On a very wide window the card stays full width (the glow fills it) but the text and poster stay
+     together: they are kept inside a centered 1900px, and --side is the empty margin on each side
+     of that. It is 0 on any window narrower than about 2000px. */
+  --side: max(0px, calc((100cqw - 1900px) / 2));
+  --poster-right: calc(clamp(4rem, 9cqw, 11rem) + var(--side));
+}
+
+/* ---- ambient glow (the shared GlowBackdrop component: blurred poster + blurred video). This wrapper
+   is the outer layer: it shifts with the mouse (parallax); the glow inside drifts by itself, so the
+   two motions do not fight. ---- */
+.hero__backdrop {
+  position: absolute;
+  inset: -12%;
+  z-index: -2;
+  transform: translate3d(calc(var(--px) * -22px), calc(var(--py) * -14px), 0);
+  transition: transform 0.5s ease-out;
+  will-change: transform;
+}
+
+/* darkens the left (for the text) and the bottom, keeps the glow on the right */
+.hero__stage::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(90deg, rgba(5, 7, 12, 0.95) 0%, rgba(5, 7, 12, 0.8) 36%, rgba(5, 7, 12, 0.2) 72%, rgba(5, 7, 12, 0.45) 100%),
+    linear-gradient(0deg, rgba(5, 7, 12, 0.65), transparent 45%);
+}
+
+/* ---- the sharp poster, right of center, clear of the badges at the bottom.
+   .hero__poster is placed and moves with the mouse (a little tilt and shift, in front of the
+   glow); .hero__poster-float floats up and down and carries the sheen. ---- */
+.hero__poster {
+  position: absolute;
+  top: 3rem;
+  right: var(--poster-right);
+  height: var(--poster-h);   /* room underneath for the badge row is already taken off */
+  aspect-ratio: 480 / 711;
+  container-type: inline-size;   /* lets the badge row below size its type from the poster's width */
+  perspective: 900px;
+  transform: translate3d(calc(var(--px) * 10px), calc(var(--py) * 8px), 0)
+    rotateY(calc(var(--px) * -5deg)) rotateX(calc(var(--py) * 3deg));
+  transition: transform 0.35s ease-out;
+  will-change: transform;
+  animation: hero-poster-in 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) backwards;
+}
+
+.hero__poster-float {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.65);
+  animation: hero-float 7s ease-in-out infinite;
+}
+
+.hero__poster-float img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* a soft band of light that sweeps across the poster every few seconds */
+.hero__poster-float::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 38%, rgba(255, 255, 255, 0.22) 50%, transparent 62%);
+  background-size: 300% 100%;
+  background-position: 160% 0;
+  animation: hero-sheen 9s ease-in-out 1.5s infinite;
+  pointer-events: none;
+}
+
+@keyframes hero-float {
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes hero-sheen {
+  0%,
+  55% {
+    background-position: 160% 0;
+  }
+  100% {
+    background-position: -60% 0;
+  }
+}
+
+/* the entrance uses the separate `translate` and `scale` properties so it never fights the
+   mouse tilt, which uses `transform` */
+@keyframes hero-poster-in {
+  from {
+    opacity: 0;
+    translate: 0 24px;
+    scale: 0.96;
+  }
+}
+
+.hero__content {
+  position: relative;
+  /* never wider than 46rem, and never reaching within 2rem of the poster (the poster's width and
+     right margin are known, so the room left for the text is simple subtraction) */
+  margin-left: var(--side);
+  max-width: min(46rem, max(18rem, calc(100cqw - var(--side) - var(--poster-right) - var(--poster-w) - 2rem)));
+  padding: 0 3.5rem 3.2rem;
+}
+
+.hero__title {
+  margin: 0 0 1.3rem;
+  font-size: clamp(1.7rem, 3.8cqw, 3.8rem);   /* follows the card's width (1% of it = 1cqw) */
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  line-height: 1.08;
+  text-transform: uppercase;
+  text-wrap: balance;
+  background: var(--metal-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 2px 14px rgba(0, 0, 0, 0.8));
+  animation: hero-up 0.65s cubic-bezier(0.2, 0.7, 0.2, 1) 0.05s backwards;
+}
+
+/* each line of text rises into place, one after the other */
+@keyframes hero-up {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+}
+
+/* Movie • Western, Drama • 2026 • PG-13 */
+.hero__facts {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 0 0 1.2rem;
+  padding: 0;
+  list-style: none;
+  font-size: 1rem;
+  font-weight: 600;
+  animation: hero-up 0.65s cubic-bezier(0.2, 0.7, 0.2, 1) 0.18s backwards;
+}
+
+.hero__facts li + li::before {
+  content: '\2022';
+  margin: 0 0.6rem;
+  color: var(--text-muted);
+}
+
+.hero__synopsis {
+  max-width: min(34rem, 100%);
+  margin: 0 0 1.8rem;
+  font-size: 1.2rem;
+  line-height: 1.45;
+  text-shadow: 0 1px 14px rgba(0, 0, 0, 0.85);
+  animation: hero-up 0.65s cubic-bezier(0.2, 0.7, 0.2, 1) 0.3s backwards;
+}
+
+.hero__actions {
+  display: flex;
+  gap: 0.8rem;
+  animation: hero-up 0.65s cubic-bezier(0.2, 0.7, 0.2, 1) 0.42s backwards;
+}
+
+.hero__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  height: 3.2rem;
+  padding: 0 1.8rem;
+  font: inherit;
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-decoration: none;
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.hero__btn:focus-visible,
+.hero__refresh:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 2px;
+}
+
+.hero__btn--play {
+  padding-left: 1.4rem;
+  color: #05070c;
+  background: #fff;
+}
+
+.hero__btn--play:hover {
+  background: #dfe5ed;
+}
+
+.hero__btn--info {
+  color: var(--text);
+  background: rgba(238, 243, 249, 0.18);
+}
+
+.hero__btn--info:hover {
+  background: rgba(238, 243, 249, 0.3);
+}
+
+/* under the poster, one row exactly as wide as the poster: the love badge starts on the poster's
+   left edge and the ranking chip ends on its right edge. If a short window ever makes the poster
+   narrower than the two together, the chip wraps to a second line instead of sticking out. */
+.hero__badges {
+  /* Both badges are about 26 character-widths wide together (the longest pair is "No. 10 in Top 10",
+     for the tenth film), so the type scales with the poster (100cqw = the poster's width): they
+     always fit side by side, 15px at most, 12px at least. The hero's minimum height keeps the poster
+     wide enough for 12px; if it ever were not, the chip wraps to a second line instead of sticking out. */
+  font-size: clamp(0.75rem, calc(100cqw / 26), 0.95rem);
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 0.75rem;
+  margin: 1.1rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hero__badges li {
+  display: flex;
+  align-items: center;
+  gap: 0.58em;
+  padding: 0.58em 1em;
+  font-size: 1em;   /* from .hero__badges, which follows the poster's width */
+  font-weight: 600;
+  background: rgba(9, 13, 21, 0.72);
+  border: 1px solid var(--border);
+  border-radius: 0.55em;
+  backdrop-filter: blur(8px);
+  animation: hero-up 0.65s cubic-bezier(0.2, 0.7, 0.2, 1) 0.55s backwards;
+}
+
+/* "We think you'll love this!": no bubble (junior), just the popcorn and the words, so the popcorn
+   starts exactly on the poster's left edge. A shadow keeps the words readable over the glow. */
+.hero__badges .hero__badge--love {
+  padding: 0;
+  background: none;
+  border: 0;
+  border-radius: 0;
+  backdrop-filter: none;
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.9), 0 0 2px rgba(0, 0, 0, 0.8);
+}
+
+.hero__badge--love svg {
+  width: 1.85em;
+  height: 1.85em;
+  flex: none;
+}
+
+/* top right: show the next pick */
+.hero__refresh {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 2.7rem;
+  height: 2.7rem;
+  color: var(--text);
+  background: rgba(9, 13, 21, 0.6);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition: background 0.15s;
+}
+
+.hero__refresh:hover {
+  background: rgba(238, 243, 249, 0.2);
+}
+
+/* "reduce motion": no drifting, floating, sheen, tilt or entrances; everything just sits still */
+@media (prefers-reduced-motion: reduce) {
+  .hero__backdrop,
+  .hero__poster {
+    transform: none;
+    transition: none;
+  }
+
+  .hero__poster,
+  .hero__poster-float,
+  .hero__poster-float::after,
+  .hero__title,
+  .hero__facts,
+  .hero__synopsis,
+  .hero__actions,
+  .hero__badges li {
+    animation: none;
+  }
+}

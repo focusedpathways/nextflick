@@ -1,9 +1,7 @@
 import { useId, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { EMAIL_PATTERN } from '../utils/validation.js'
 import './EmailCapture.css'
-
-// something@domain.tld: no spaces, one @, a dot in the domain, 2+ letter TLD
-const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
 
 // The "enter your email, Get Started" form. Used twice on the Landing page (the hero
 // callout and the footer), so validation lives here once. A valid email goes to /signup

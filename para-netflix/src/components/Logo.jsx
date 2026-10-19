@@ -32,7 +32,7 @@ const REEL_PATH = [
 ].join(' ')
 
 // tone="silver" (default): the metallic look used on the dark Landing page.
-// tone="red": solid Netflix red for reel, bar and wordmark (light pages like Signup).
+// tone="red": solid Netflix red for reel, bar and wordmark (the form pages).
 export default function Logo({ tone = 'silver' }) {
   const fill = tone === 'red' ? '#e50914' : 'url(#logo-metal)'
   return (

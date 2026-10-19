@@ -68,7 +68,7 @@
   color: rgba(159, 176, 195, 0.65);
 }
 
-/* ---- light variant (Signup etc.) ----
+/* ---- light variant (the form pages) ----
    The grey area is the lower third of the screen (at least 33.333vh; it grows if the
    content needs more room). Its background is the same grey as the header line, and the
    text is just darker than that grey. */
