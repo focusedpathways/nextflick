@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 import { Navigate, useLocation, useNavigate, useParams } from 'react-router-dom'
-import titles from '../../data/titles.json'
 import { VIDEO_SRC } from '../../components/BackgroundVideo.jsx'
 import { BackIcon, PauseIcon, PlayIcon } from '../../components/icons.jsx'
+import { useFilm } from '../../context/useTmdbFilms.js'
 import { useWatchHistory } from '../../context/watchHistoryContext.js'
 import { prefersReducedMotion } from '../../utils/motion.js'
 import { formatRuntime } from '../../utils/format.js'
@@ -13,11 +13,12 @@ import './Watch.css'
 // at one film-minute per real second so progress is easy to see. What was watched is written to the watch history
 // (context/WatchHistoryProvider.jsx), which is what makes the Continue Watching rows real.
 
-// The page the address names; an unknown id goes back to the home screen
+// The page the address names; an unknown id goes back to the home screen. A TMDB film is fetched first.
 export default function Watch() {
   const { id } = useParams()
-  const film = titles.find((t) => t.id === id)
-  if (!film) return <Navigate to="/browse" replace />
+  const film = useFilm(id)
+  if (film === undefined) return <main className="watch" aria-busy="true" />
+  if (film === null) return <Navigate to="/browse" replace />
   return <WatchPlayer key={film.id} film={film} />
 }
 

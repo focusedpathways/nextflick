@@ -1,4 +1,5 @@
 import titles from '../data/titles.json'
+import { findFilm } from './films.js'
 
 // Stand-in for a recommender. There is no viewer data and no backend yet, so this just walks the
 // films in a fixed order, one step on EACH LOGIN: the hero on the home screen shows a different film
@@ -141,7 +142,8 @@ const CONTINUE_ORDER = [
   'psych',
 ]
 
-const byIds = (ids) => ids.map((id) => titles.find((t) => t.id === id)).filter(Boolean)
+// Catalog titles, or TMDB films the visit has fetched (the watch history can hold both)
+const byIds = (ids) => ids.map((id) => findFilm(id)).filter(Boolean)
 
 export function mostRewatched(type = 'all') {
   return ofType(byIds(REWATCHED_ORDER), type)

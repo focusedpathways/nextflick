@@ -92,6 +92,16 @@ The three rows under the hero (junior: "simple thumbnail images will suffice. th
     pointer over a row, the wheel still scrolls the PAGE up and down. Thumbnails grow slightly on hover and show a focus ring for the keyboard.
   - Every thumbnail is a real <button> (its name is the film's title and year). Pressing one opens the More Info
     pop-up for that film (ThumbnailRow's `onSelect(film)`, wired in Browse.jsx).
+  - LIVE TMDB ROW (preview): "Live from TMDB (preview)" under the three rows. Hidden under Shows and while searching.
+    Films come from src/services/tmdb.js, which calls the Supabase Edge Function `tmdb-movies` (the TMDB token stays
+    in that function; its source is supabase/functions/tmdb-movies/index.ts). Pressing a thumbnail fetches the film's
+    details (genres, cast, rating, runtime) and opens the same More Info pop-up as every row; Play and My List work
+    for it too (ids look like tmdb-550; utils/films.js keeps the fetched films for the visit). If the details call
+    fails, the pop-up still opens with what the popular list has (poster, year, summary, genres) and hides the rest.
+    CONTENT FILTER (junior: nothing overly sexualized, horror, spiritualism or occult): src/utils/contentFilter.js
+    drops TMDB's adult/softcore films, the Horror genre, and any title or summary using a blocked word (the list is
+    in that file; edit it to tighten or loosen). It only sees the summary, so some films can still slip through.
+    To remove it, delete the one <ThumbnailRow heading="Live from TMDB (preview)"> block in Browse.jsx.
   - Which films (stand-ins for database queries, in src/utils/recommend.js): Most Rewatched = 12 films in a fixed
     order; Continue Watching = the titles the member really played (the watch history, most recent first) followed by a stand-in list of 12; We Think You'll Love These = the next 15 best picks without the film the
     hero is showing. They mix the 16 newer live-action films with the original ten. Posters are the only art we have, so they are PORTRAIT, not the landscape thumbnails of the
