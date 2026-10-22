@@ -1,8 +1,8 @@
 // tmdb-movies: the only place the TMDB token is used. The browser calls this function and never sees the token.
 //   GET (no body)  -> TMDB's list of popular movies (the Browse "Live from TMDB" row)
 //   POST { id }    -> one movie with its genres, cast (credits) and release certifications (release_dates)
-// CHECK BEFORE DEPLOYING: the secret name (TMDB_ACCESS_TOKEN) and the Bearer auth must match what is set up in
-// Supabase for the function that is already working. Change the one line below if they differ.
+// The token is the Supabase secret TMDB_READ_ACCESS_TOKEN (TMDB's "API Read Access Token"), sent to TMDB as
+// `Authorization: Bearer <token>`.
 
 const cors = {
   "Access-Control-Allow-Origin": "*",
@@ -17,7 +17,7 @@ function json(body: unknown, status = 200) {
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") return new Response("ok", { headers: cors })
 
-  const token = Deno.env.get("TMDB_ACCESS_TOKEN")
+  const token = Deno.env.get("TMDB_READ_ACCESS_TOKEN")
   if (!token) return json({ error: "TMDB token is not set on this function" }, 500)
 
   let path = "/movie/popular"

@@ -1,10 +1,16 @@
-# Tooling and test output, not project code
-.claude/
-.vscode/
-.playwright-mcp/
-.DS_Store
-single.env
-.env.local
+# Applies to the whole repo (front-end/ and supabase/ have their own extra rules)
 
+# Secrets: never commit
 .env
-.env.local
+.env.*
+!.env.example
+single.env
+
+# Operating system
+.DS_Store
+
+# Editor and tool folders: personal settings and test output, not project code
+.vscode/
+.idea
+.playwright-mcp/
+.claude/
