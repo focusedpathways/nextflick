@@ -16,8 +16,8 @@ Have fun, put in effort, and focus on understanding the Front-End design structu
 ## About NextFlick
 
 A Netflix-style single page app built for the Code Platoon assignment. The focus is front-end
-structure: pages, shared layouts and reusable components. There is no backend: sign-in and billing
-are mocked with local state and validation, and the film data is a hand-written JSON file.
+structure: pages, shared layouts and reusable components. Sign-in, sign-up and saved member data use
+Supabase; the film data is a hand-written JSON file, plus a live TMDB preview row.
 
 Brand: **NextFlick** (its own identity). Look: dark, cool, metallic; Netflix red is the only warm
 color and is reserved for actions. Desktop only for now.
@@ -34,14 +34,27 @@ npm run build
 
 Stack: Vite 8, React 19, react-router-dom, plain CSS (one `.css` next to each component or page).
 
-## Where things are
+## Project layout
 
-The app is in `front-end/`; the paths below are inside it. Database files (migrations, the TMDB edge function, security notes) are in `supabase/`.
+```
+agentic-netflix-clone-i/
+├── front-end/     the React app (Vite + React): all the pages, components, styles, data and media
+│   ├── src/
+│   ├── public/
+│   ├── index.html
+│   └── package.json
+├── supabase/      the database side: migrations, the TMDB edge function, test data
+└── README.md      this file
+```
+
+**The front end is the `front-end/` folder.** The commands in "Run it" are run from it, and every path in the table below is inside it.
+
+## Where things are in `front-end/`
 
 | Path | What |
 |---|---|
 | `src/App.jsx` | Routes. Also says what comes next in the sign-up flow |
-| `src/pages/<name>/` | One folder per page: its code, a `README.txt` and a `USER_JOURNEY.md`. A pop-up that belongs to a page gets a subfolder the same way (`src/components/moreinfo/`) |
+| `src/pages/<name>/` | One folder per page with its code and styles. A pop-up that belongs to a page gets a subfolder the same way (`src/components/moreinfo/`) |
 | `src/components/` | Shared layouts and pieces (`ShowcasePage`, `LightPage`, `MemberPage`, `MemberHeader`, `FormStep`, `FieldForm`, `SiteHeader`, `Footer`, `FeaturedRow`, `ThumbnailRow`, the `moreinfo/` pop-up, ...) |
 | `src/context/` | State shared between pages (My List and the watch history, both kept in the browser) |
 | `src/utils/validation.js` | Form rules used by more than one page |
@@ -66,16 +79,5 @@ The app is in `front-end/`; the paths below are inside it. Database files (migra
 | `/profiles` | Who's Watching | skipped for now |
 
 Sign-up flow: Landing, Password, Contact, Billing, Gateway, then the home screen. The Password,
-Contact and Billing pages are standalone modules that are meant to be reused later in an account
-menu (see `src/components/FORM_PAGES.md`).
-
-## Documentation
-
-- `front-end/README.txt`: the roadmap, the current state of each page and the decisions log.
-- `CLAUDE.md`: project rules and the full current spec.
-- `front-end/src/pages/<name>/README.txt` and `USER_JOURNEY.md`: per page.
-- `front-end/src/components/FORM_PAGES.md`: how the reusable form pages are built.
-
-## Status note (2026-10-16)
-
-All pages through the watch page (`/watch/:id`) are built and awaiting the junior's audit. One open item: a reported "page does not resize with the window", traced to a pinned test-browser viewport rather than the CSS; see `front-end/README.txt` ("WHERE WE STOPPED") and `CLAUDE.md` ("Browser QA gotcha").
+Contact and Billing pages are standalone modules, reused by the account menu's
+`/account/...` pages.
