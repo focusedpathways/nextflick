@@ -94,7 +94,7 @@ The three rows under the hero (junior: "simple thumbnail images will suffice. th
     pop-up for that film (ThumbnailRow's `onSelect(film)`, wired in Browse.jsx).
   - LIVE TMDB ROW (preview): "Live from TMDB (preview)" under the three rows. Hidden under Shows and while searching.
     Films come from src/services/tmdb.js, which calls the Supabase Edge Function `tmdb-movies` (the TMDB token stays
-    in that function; its source is supabase/functions/tmdb-movies/index.ts). Pressing a thumbnail fetches the film's
+    in that function; its source is supabase/functions/tmdb-movies/index.ts at the repo root, outside front-end/). Pressing a thumbnail fetches the film's
     details (genres, cast, rating, runtime) and opens the same More Info pop-up as every row; Play and My List work
     for it too (ids look like tmdb-550; utils/films.js keeps the fetched films for the visit). If the details call
     fails, the pop-up still opens with what the popular list has (poster, year, summary, genres) and hides the rest.

@@ -1,4 +1,4 @@
-NEXTFLICK ROADMAP  (repo folder: para-netflix)
+NEXTFLICK ROADMAP  (app folder: front-end)
 ==============================================
 Rule: one page at a time. A page is done only when the junior signs off.
 Target: desktop only for now.
@@ -47,7 +47,7 @@ d) Junior approves or requests changes
 e) Tick the box above and log decisions below
 
 RUN IT
-  cd para-netflix
+  cd front-end
   npm install        (first time only)
   npm run dev        then open http://localhost:5173/   (not index.html directly)
   npm run lint
@@ -412,8 +412,8 @@ DOCS UP TO DATE / NEXT STEP  (junior: "ensure all readme and md files are up to 
 ----------------------------------------------------------------------
 Doc map
   README.txt (this file)        roadmap, current state per page, decisions log
-  CLAUDE.md                     project rules and the full current spec (routes, component tree, decisions)
-  para-netflix/README.md        what the project is and how to run it (the Vite template text was replaced)
+  ../CLAUDE.md                  project rules and the full current spec (routes, component tree, decisions)
+  ../README.md                  the assignment brief, what the project is and how to run it
   src/pages/<name>/README.txt + USER_JOURNEY.md   landing, password, contact, billing, gateway, forbidden
   src/components/FORM_PAGES.md  how Password/Contact/Billing share FormStep + FieldForm and how to reuse them
 Decisions
