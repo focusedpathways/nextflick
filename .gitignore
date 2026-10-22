@@ -15,8 +15,9 @@ single.env
 .playwright-mcp/
 .claude/
 
-# Project docs: kept on this machine only, not public
-# (the root README.md, the assignment brief, stays in the repo)
+# Kept on this machine only, never pushed to GitHub
+# Project docs: every .md file (README.md and CLAUDE.md included) and every README.txt
 *.md
-!/README.md
 README.txt
+# The database side (migrations, edge functions, test data)
+supabase/
