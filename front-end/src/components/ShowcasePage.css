@@ -11,6 +11,9 @@
   min-height: 100vh;
   min-height: 100svh;   /* the visible height, even with browser toolbars */
   display: grid;
+  /* one column exactly as wide as the screen allows; an auto column would grow to fit the
+     callout's content and push the page wider than a phone */
+  grid-template-columns: minmax(0, 1fr);
   place-items: center;
   /* the nav bar is about 80px tall; padding the top by that centers the callout in the
      visible area below it (junior's choice), not in the whole window */
@@ -102,4 +105,21 @@
 .cta-actions .email-capture__btn:focus-visible {
   outline: 2px solid var(--text);
   outline-offset: 2px;
+}
+
+/* Phones: the darkening may reach the screen edge but never past it (sticking out 7rem made
+   the page wider than the phone, which then zoomed out); smaller type. */
+@media (max-width: 600px) {
+  .cta-card::before {
+    inset: -3rem calc(-1 * var(--gutter));
+  }
+
+  .cta-card h1 {
+    font-size: 1.75rem;
+  }
+
+  .cta-card p {
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+  }
 }

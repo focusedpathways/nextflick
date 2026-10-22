@@ -81,3 +81,14 @@
 .email-capture--footer input::placeholder {
   color: var(--text-muted);
 }
+
+/* Phones: the field takes the full width, the button goes underneath it */
+@media (max-width: 600px) {
+  .email-capture__row {
+    flex-direction: column;
+  }
+
+  .email-capture__btn {
+    min-height: 3.2rem;
+  }
+}

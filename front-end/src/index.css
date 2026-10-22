@@ -30,6 +30,14 @@
   -webkit-font-smoothing: antialiased;
 }
 
+/* Phones: narrower side margin and shorter section gaps */
+@media (max-width: 600px) {
+  :root {
+    --gutter: 1.25rem;
+    --section-gap: 96px;
+  }
+}
+
 *,
 *::before,
 *::after {
