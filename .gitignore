@@ -14,3 +14,9 @@ single.env
 .idea
 .playwright-mcp/
 .claude/
+
+# Project docs: kept on this machine only, not public
+# (the root README.md, the assignment brief, stays in the repo)
+*.md
+!/README.md
+README.txt
