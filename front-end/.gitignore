@@ -27,14 +27,7 @@ dist-ssr
 !.env.example
 single.env
 
-# Keep documentation local
+# Markdown stays local (README.txt orientation files are published)
 *.md
 *.MD
 *.markdown
-
-# Local-only documentation
-/README.txt
-/docs/
-
-# Exclude README text files everywhere
-README.txt
